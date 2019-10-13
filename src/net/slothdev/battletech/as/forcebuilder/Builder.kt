@@ -1,9 +1,16 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
+import java.lang.Exception
+
 data class Forces(val side1: List<Miniature>, val side2: List<Miniature>)
+
+class BuilderException(message: String) : Exception(message)
 
 class Builder(val minis: List<Miniature>) {
     fun build(unitsPerSide: Int): Forces {
+        if (minis.size < 2 * unitsPerSide) {
+            throw BuilderException("not enough miniatures to allow $unitsPerSide units per-side")
+        }
         val side1 = mutableListOf<Miniature>()
         val side2 = mutableListOf<Miniature>()
         for (i in 0 until unitsPerSide) {
