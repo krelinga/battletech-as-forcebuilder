@@ -6,7 +6,7 @@ data class Forces(val side1: List<Miniature>, val side2: List<Miniature>)
 
 class BuilderException(message: String) : Exception(message)
 
-class Builder(val minis: List<Miniature>) {
+class Builder(private val minis: List<Miniature>) {
     fun build(unitsPerSide: Int): Forces {
         if (unitsPerSide <= 0) {
             throw IllegalArgumentException("requested too few units per-side: $unitsPerSide")
