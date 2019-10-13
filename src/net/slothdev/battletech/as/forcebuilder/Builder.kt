@@ -1,6 +1,6 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
-import java.lang.Exception
+import kotlin.Exception
 
 data class Forces(val side1: List<Miniature>, val side2: List<Miniature>)
 
