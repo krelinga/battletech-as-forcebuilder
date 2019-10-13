@@ -8,6 +8,9 @@ class BuilderException(message: String) : Exception(message)
 
 class Builder(val minis: List<Miniature>) {
     fun build(unitsPerSide: Int): Forces {
+        if (unitsPerSide <= 0) {
+            throw IllegalArgumentException("requested too few units per-side: $unitsPerSide")
+        }
         if (minis.size < 2 * unitsPerSide) {
             throw BuilderException("not enough miniatures to allow $unitsPerSide units per-side")
         }

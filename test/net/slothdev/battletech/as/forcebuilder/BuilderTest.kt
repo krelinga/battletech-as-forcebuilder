@@ -21,5 +21,13 @@ internal class BuilderTest {
             val b = Builder(listOf(Miniature("foo")))
             assertFailsWith<BuilderException> { b.build(1) }
         }
+        @Test fun `zero miniatures per-side throws exception`() {
+            val b = Builder(listOf(Miniature("foo")))
+            assertFailsWith<IllegalArgumentException> { b.build(0) }
+        }
+        @Test fun `negative miniatures per-side throws exception`() {
+            val b = Builder(listOf(Miniature("foo")))
+            assertFailsWith<IllegalArgumentException> { b.build(-1) }
+        }
     }
 }
