@@ -5,5 +5,5 @@ fun main() {
         Miniature("foo"), Miniature("bar"), Miniature("biff"), Miniature("bonk")
     )
     val builder = Builder(minis)
-    println(builder.build(2))
+    println(builder.build(2, 1))
 }
