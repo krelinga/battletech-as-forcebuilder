@@ -33,7 +33,8 @@ class Builder(private val minis: List<Miniature>) {
             }
         }
         // If we've totally wrapped around then we're done.
-        return !miniState.fold(true) { sum, current -> sum && current == MiniState.NONE }
+        val done = miniState.fold(true) { sum, current -> sum && current == MiniState.NONE }
+        return !done
     }
 
     private fun currentSolution() : Forces {
