@@ -5,6 +5,7 @@ import org.junit.jupiter.api.*
 
 internal class BuilderTest {
     @Nested inner class Build {
+        // TODO: add more tests now that I've added some logic around checking all options.  Test that optimal solutions are found.
         @Test fun `just enough miniatures works`() {
             val minis = listOf(
                 Miniature("foo"),
