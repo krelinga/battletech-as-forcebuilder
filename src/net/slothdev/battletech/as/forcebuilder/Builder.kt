@@ -1,5 +1,8 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
+import kotlin.math.abs
+import kotlin.math.sqrt
+
 data class Forces(val side1: List<Miniature>, val side2: List<Miniature>)
 
 class Builder(private val minis: List<Miniature>) {
@@ -15,6 +18,6 @@ class Builder(private val minis: List<Miniature>) {
         for (i in unitsPerSide until unitsPerSide * 2) {
             side2.add(minis[i])
         }
-        return Forces(side1, side2)
+        return Forces(targetPvPerSide, side1, side2)
     }
 }
