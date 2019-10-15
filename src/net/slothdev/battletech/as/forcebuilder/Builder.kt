@@ -5,7 +5,11 @@ import kotlin.math.sqrt
 
 data class Forces(val side1: List<Miniature>, val side2: List<Miniature>)
 
-class Builder(private val minis: List<Miniature>) {
+class Builder private constructor(private val minis: List<Miniature>) {
+    // We want to enforce that the given set of minis is unique, but internally it makes more sense
+    // to store them as a list.
+    constructor(minis: Set<Miniature>) : this(minis.toList())
+
     private enum class MiniState {
         NONE, SIDE1, SIDE2
     }
@@ -38,8 +42,8 @@ class Builder(private val minis: List<Miniature>) {
     }
 
     private fun currentSolution() : Forces {
-        val side1 = mutableListOf<Miniature>()
-        val side2 = mutableListOf<Miniature>()
+        val side1 = mutableSetOf<Miniature>()
+        val side2 = mutableSetOf<Miniature>()
 
         for (i in 0 until miniState.size) {
             when(miniState[i]) {
@@ -57,6 +61,13 @@ class Builder(private val minis: List<Miniature>) {
         this.unitsPerSide = unitsPerSide
         targetPv = targetPvPerSide
         miniState = MutableList<MiniState>(minis.size) { MiniState.NONE }
+
+        // The first state produces a solution where no minis are assigned to any side.  This is
+        // a bit of a problem for the Forces class, which has some implementation details that
+        // assume the two sides are never equal (which having two empty sides violates).  The
+        // easy solution here is to just skip over that state, since we'd never care about it in
+        // practice anyway.
+        nextMiniState()
     }
 
     private fun solutionIsOK(forces: Forces): Boolean {

@@ -1,7 +1,7 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
 fun main() {
-    val minis = listOf<Miniature>(
+    val minis = setOf<Miniature>(
         Miniature("foo"), Miniature("bar"), Miniature("biff"), Miniature("bonk")
     )
     val builder = Builder(minis)
