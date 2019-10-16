@@ -58,34 +58,34 @@ class Builder private constructor(private val minis: List<Miniature>) {
     // to store them as a list.
     constructor(minis: Set<Miniature>) : this(minis.toList())
 
-    private enum class MiniState {
+    private enum class MiniSide {
         NONE, SIDE1, SIDE2
     }
 
-    private var miniState = mutableListOf<MiniState>()
+    private var miniState = mutableListOf<MiniSide>()
     private var targetPv = 0
     private var unitsPerSide = 0
 
     private fun nextMiniState(): Boolean {
         miniStateLoop@ for (i in 0 until miniState.size) {
             when(miniState[i]) {
-                MiniState.NONE -> {
-                    miniState[i] = MiniState.SIDE1
+                MiniSide.NONE -> {
+                    miniState[i] = MiniSide.SIDE1
                     break@miniStateLoop
                 }
-                MiniState.SIDE1 -> {
-                    miniState[i] = MiniState.SIDE2
+                MiniSide.SIDE1 -> {
+                    miniState[i] = MiniSide.SIDE2
                     break@miniStateLoop
                 }
-                MiniState.SIDE2 -> {
-                    miniState[i] = MiniState.NONE
+                MiniSide.SIDE2 -> {
+                    miniState[i] = MiniSide.NONE
                     // Don't break out here because we need to find some non-overflow index to
                     // change.
                 }
             }
         }
         // If we've totally wrapped around then we're done.
-        val done = miniState.fold(true) { sum, current -> sum && current == MiniState.NONE }
+        val done = miniState.fold(true) { sum, current -> sum && current == MiniSide.NONE }
         return !done
     }
 
@@ -95,8 +95,8 @@ class Builder private constructor(private val minis: List<Miniature>) {
 
         for (i in 0 until miniState.size) {
             when(miniState[i]) {
-                MiniState.SIDE1 -> side1.add(minis[i])
-                MiniState.SIDE2 -> side2.add(minis[i])
+                MiniSide.SIDE1 -> side1.add(minis[i])
+                MiniSide.SIDE2 -> side2.add(minis[i])
                 else -> {
                     // nothing to do in this case, just skip it.
                 }
@@ -108,7 +108,7 @@ class Builder private constructor(private val minis: List<Miniature>) {
     private fun reset(unitsPerSide: Int, targetPvPerSide: Int) {
         this.unitsPerSide = unitsPerSide
         targetPv = targetPvPerSide
-        miniState = MutableList<MiniState>(minis.size) { MiniState.NONE }
+        miniState = MutableList<MiniSide>(minis.size) { MiniSide.NONE }
     }
 
     private fun solutionIsOK(forces: Forces): Boolean {
