@@ -6,7 +6,11 @@ import kotlin.math.sqrt
 data class Forces(val targetPv: Int, private val miniatures: Set<Set<Miniature>>) {
     init {
         require(targetPv > 0) { "targetPv must be > 0, saw $targetPv"}
-        require(miniatures.size == 2) { "expected 2 entries in miniatures, saw ${miniatures.size}" }
+        // Miniatures is a set of sets, where the entries in the outer sets comprise the two forces.
+        // There's an edge case where the two forces are both empty, in which case there will be
+        // only a single entry.
+        require(miniatures.isNotEmpty()) { "miniatures must not be empty" }
+        require(miniatures.size <= 2) { "too many entries in miniatures: ${miniatures.size}" }
     }
 
     // Allow specifying the sets for side1 and side2 gracefully.
@@ -105,13 +109,6 @@ class Builder private constructor(private val minis: List<Miniature>) {
         this.unitsPerSide = unitsPerSide
         targetPv = targetPvPerSide
         miniState = MutableList<MiniState>(minis.size) { MiniState.NONE }
-
-        // The first state produces a solution where no minis are assigned to any side.  This is
-        // a bit of a problem for the Forces class, which has some implementation details that
-        // assume the two sides are never equal (which having two empty sides violates).  The
-        // easy solution here is to just skip over that state, since we'd never care about it in
-        // practice anyway.
-        nextMiniState()
     }
 
     private fun solutionIsOK(forces: Forces): Boolean {
