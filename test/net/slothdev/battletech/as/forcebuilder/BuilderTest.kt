@@ -18,6 +18,17 @@ internal class BuilderTest {
             assertEquals(2, forces.side1.size)
             assertEquals(2, forces.side2.size)
         }
+        @Test fun `finds optimal solution`() {
+            val foo = Miniature("foo", 50)
+            val bar = Miniature("bar", 50)
+            val baz = Miniature("baz", 51)
+            val biff = Miniature("biff", 49)
+            val targetPv = 100
+            val expected = Forces(targetPv, setOf(foo, bar), setOf(baz, biff))
+            val builder = Builder(setOf(foo, bar, baz, biff))
+            val actual = builder.build(2, targetPv)
+            assertEquals(actual, expected)
+        }
         @Test fun `not enough miniatures throws exception`() {
             val b = Builder(setOf(Miniature("foo")))
             assertFailsWith<IllegalArgumentException> { b.build(1, 1) }
