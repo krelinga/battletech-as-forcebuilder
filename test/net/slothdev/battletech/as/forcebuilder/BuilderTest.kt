@@ -27,7 +27,7 @@ internal class BuilderTest {
             val expected = Forces(targetPv, setOf(foo, bar), setOf(baz, biff))
             val builder = Builder(setOf(foo, bar, baz, biff))
             val actual = builder.build(2, targetPv)
-            assertEquals(actual, expected)
+            assertEquals(expected, actual)
         }
 
         @Test
