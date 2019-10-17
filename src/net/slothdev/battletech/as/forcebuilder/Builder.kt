@@ -62,10 +62,14 @@ class Builder private constructor(private val minis: List<Miniature>) {
         NONE, SIDE1, SIDE2
     }
 
-    private inner class MiniState(val mini: Miniature) {
+    private inner class MiniState(private val mini: Miniature) {
         // the current state of the miniature.
         var side: MiniSide = MiniSide.NONE
             private set
+
+        // TODO: change this to create a miniature with only the currently-selected unit.
+        val current: Miniature
+            get() = mini
 
         // true if further calls to next() will not change the state anymore.
         val done
@@ -109,8 +113,8 @@ class Builder private constructor(private val minis: List<Miniature>) {
 
         for (entry in miniState) {
             when (entry.side) {
-                MiniSide.SIDE1 -> side1.add(entry.mini)
-                MiniSide.SIDE2 -> side2.add(entry.mini)
+                MiniSide.SIDE1 -> side1.add(entry.current)
+                MiniSide.SIDE2 -> side2.add(entry.current)
                 MiniSide.NONE -> {
                 }
             }
