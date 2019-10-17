@@ -67,19 +67,34 @@ class Builder private constructor(private val minis: List<Miniature>) {
         var side: MiniSide = MiniSide.NONE
             private set
 
-        // TODO: change this to create a miniature with only the currently-selected unit.
+        init {
+            require(mini.units.isNotEmpty())
+        }
+
+        private var unitIterator = mini.units.iterator()
+        private var currentUnit = unitIterator.next()
+
         val current: Miniature
-            get() = mini
+            get() = Miniature(mini.kind, setOf(currentUnit))
 
         // true if further calls to next() will not change the state anymore.
         val done
-            get() = side == MiniSide.SIDE2
+            get() = side == MiniSide.SIDE2 && !unitIterator.hasNext()
 
         fun next() {
+            if (done) return
             when (side) {
                 MiniSide.NONE -> side = MiniSide.SIDE1
-                MiniSide.SIDE1 -> side = MiniSide.SIDE2
-                MiniSide.SIDE2 -> {
+                else -> {
+                    if (unitIterator.hasNext()) {
+                        currentUnit = unitIterator.next()
+                    } else {
+                        assert(side == MiniSide.SIDE1) {
+                            "MiniState::done should be true, so we " + "shouldn't ever get here."
+                        }
+                        side = MiniSide.SIDE2
+                        unitIterator = mini.units.iterator()
+                    }
                 }
             }
         }
