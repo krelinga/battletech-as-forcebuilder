@@ -29,6 +29,20 @@ internal class BuilderTest {
             val actual = builder.build(2, targetPv)
             assertEquals(actual, expected)
         }
+
+        @Test
+        fun `supports multiple units per-miniature`() {
+            val m1u1 = Unit("M1-U1", 50)
+            val m1 = Miniature("M1", setOf(m1u1, Unit("M1-U2", 75)))
+            val m2u1 = Unit("M2-U1", 50)
+            val m2 = Miniature("M2", setOf(m2u1, Unit("M2-U2", 75)))
+            val targetPv = 50
+            val expected = Forces(targetPv, setOf(Miniature("M1", setOf(m1u1))),
+                                  setOf(Miniature("M2", setOf(m2u1))))
+            val builder = Builder(setOf(m1, m2))
+            val actual = builder.build(1, targetPv)
+            assertEquals(expected, actual)
+        }
         @Test fun `not enough miniatures throws exception`() {
             val b = Builder(setOf(Miniature("foo")))
             assertFailsWith<IllegalArgumentException> { b.build(1, 1) }
