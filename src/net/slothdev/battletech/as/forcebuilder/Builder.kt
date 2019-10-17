@@ -62,43 +62,56 @@ class Builder private constructor(private val minis: List<Miniature>) {
         NONE, SIDE1, SIDE2
     }
 
-    private var miniState = mutableListOf<MiniSide>()
+    private inner class MiniState(val mini: Miniature) {
+        // the current state of the miniature.
+        var side: MiniSide = MiniSide.NONE
+            private set
+
+        // true if further calls to next() will not change the state anymore.
+        val done
+            get() = side == MiniSide.SIDE2
+
+        fun next() {
+            when (side) {
+                MiniSide.NONE -> side = MiniSide.SIDE1
+                MiniSide.SIDE1 -> side = MiniSide.SIDE2
+                MiniSide.SIDE2 -> {
+                }
+            }
+        }
+
+        fun reset() {
+            side = MiniSide.NONE
+        }
+    }
+
+    private var miniState = listOf<MiniState>()
     private var targetPv = 0
     private var unitsPerSide = 0
 
     private fun nextMiniState(): Boolean {
-        miniStateLoop@ for (i in 0 until miniState.size) {
-            when(miniState[i]) {
-                MiniSide.NONE -> {
-                    miniState[i] = MiniSide.SIDE1
-                    break@miniStateLoop
-                }
-                MiniSide.SIDE1 -> {
-                    miniState[i] = MiniSide.SIDE2
-                    break@miniStateLoop
-                }
-                MiniSide.SIDE2 -> {
-                    miniState[i] = MiniSide.NONE
-                    // Don't break out here because we need to find some non-overflow index to
-                    // change.
-                }
+        val done = miniState.fold(true) { sum, entry -> sum && entry.done }
+        if (done) return false
+        for (entry in miniState) {
+            if (entry.done) {
+                entry.reset()
+            } else {
+                entry.next()
+                break
             }
         }
-        // If we've totally wrapped around then we're done.
-        val done = miniState.fold(true) { sum, current -> sum && current == MiniSide.NONE }
-        return !done
+        return true
     }
 
     private fun currentSolution() : Forces {
         val side1 = mutableSetOf<Miniature>()
         val side2 = mutableSetOf<Miniature>()
 
-        for (i in 0 until miniState.size) {
-            when(miniState[i]) {
-                MiniSide.SIDE1 -> side1.add(minis[i])
-                MiniSide.SIDE2 -> side2.add(minis[i])
-                else -> {
-                    // nothing to do in this case, just skip it.
+        for (entry in miniState) {
+            when (entry.side) {
+                MiniSide.SIDE1 -> side1.add(entry.mini)
+                MiniSide.SIDE2 -> side2.add(entry.mini)
+                MiniSide.NONE -> {
                 }
             }
         }
@@ -108,7 +121,7 @@ class Builder private constructor(private val minis: List<Miniature>) {
     private fun reset(unitsPerSide: Int, targetPvPerSide: Int) {
         this.unitsPerSide = unitsPerSide
         targetPv = targetPvPerSide
-        miniState = MutableList<MiniSide>(minis.size) { MiniSide.NONE }
+        miniState = minis.map { MiniState(it) }
     }
 
     private fun solutionIsOK(forces: Forces): Boolean {
