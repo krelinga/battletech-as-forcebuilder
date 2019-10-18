@@ -6,6 +6,19 @@ data class Unit(val name: String, val pv: Int) {
     }
 }
 
+class UnitDb {
+    private val unitSet: MutableSet<Unit> = mutableSetOf()
+    private val nameSet: MutableSet<String> = mutableSetOf()
+
+    fun add(unit: Unit) {
+        require(!nameSet.contains(unit.name))
+        nameSet.add(unit.name)
+        unitSet.add(unit)
+    }
+
+    fun asSet() = unitSet
+}
+
 data class Miniature(val kind: String, val units: Set<Unit>) {
     init {
         require(units.isNotEmpty())
