@@ -16,7 +16,7 @@ class UnitDb {
         unitSet.add(unit)
     }
 
-    fun asSet() = unitSet
+    fun asSet(): Set<Unit> = unitSet
 }
 
 data class Miniature(val kind: String, val supportedUnits: Set<Unit>) {
