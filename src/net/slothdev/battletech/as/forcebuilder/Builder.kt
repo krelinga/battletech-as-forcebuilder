@@ -25,8 +25,12 @@ data class Forces(val targetPv: Int, private val miniatures: Set<Set<Miniature>>
 
     val score: Double
         get() {
-            val side1Points = side1.fold(0) { sum, element -> sum + element.pv }
-            val side2Points = side2.fold(0) { sum, element -> sum + element.pv }
+            val side1Points = side1.fold(0) { sum, element ->
+                sum + element.supportedUnits.first().pv
+            }
+            val side2Points = side2.fold(0) { sum, element ->
+                sum + element.supportedUnits.first().pv
+            }
 
             fun pointDiff(x: Int, y: Int): Double {
                 val diff = abs(x.toDouble() - y.toDouble())
@@ -68,10 +72,10 @@ class Builder private constructor(private val minis: List<Miniature>) {
             private set
 
         init {
-            require(mini.units.isNotEmpty())
+            require(mini.supportedUnits.isNotEmpty())
         }
 
-        private var unitIterator = mini.units.iterator()
+        private var unitIterator = mini.supportedUnits.iterator()
         private var currentUnit = unitIterator.next()
 
         val current: Miniature
@@ -93,7 +97,7 @@ class Builder private constructor(private val minis: List<Miniature>) {
                             "MiniState::done should be true, so we " + "shouldn't ever get here."
                         }
                         side = MiniSide.SIDE2
-                        unitIterator = mini.units.iterator()
+                        unitIterator = mini.supportedUnits.iterator()
                     }
                 }
             }

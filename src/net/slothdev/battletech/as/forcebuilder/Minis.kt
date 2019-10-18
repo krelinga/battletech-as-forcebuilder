@@ -19,14 +19,11 @@ class UnitDb {
     fun asSet() = unitSet
 }
 
-data class Miniature(val kind: String, val units: Set<Unit>) {
+data class Miniature(val kind: String, val supportedUnits: Set<Unit>) {
     init {
-        require(units.isNotEmpty())
+        require(supportedUnits.isNotEmpty())
     }
 
-    val pv: Int
-        get() = units.first().pv
-
-    // A shortcut to make a Miniature with a single unit.
-    constructor(name: String, pv: Int = 0) : this(name, setOf(Unit(name, pv)))
+    // Shortcut for miniatures composed of a single unit.
+    constructor(unit: Unit) : this(unit.name, setOf(unit))
 }
