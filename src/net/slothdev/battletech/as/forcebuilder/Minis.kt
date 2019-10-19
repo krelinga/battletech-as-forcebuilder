@@ -27,3 +27,16 @@ data class Miniature(val kind: String, val supportedUnits: Set<Unit>) {
     // Shortcut for miniatures composed of a single unit.
     constructor(unit: Unit) : this(unit.name, setOf(unit))
 }
+
+class MiniatureDb {
+    private val miniatureSet: MutableSet<Miniature> = mutableSetOf()
+    private val kindSet: MutableSet<String> = mutableSetOf()
+
+    fun add(miniature: Miniature) {
+        require(!kindSet.contains(miniature.kind))
+        kindSet.add(miniature.kind)
+        miniatureSet.add(miniature)
+    }
+
+    fun asSet(): Set<Miniature> = miniatureSet
+}
