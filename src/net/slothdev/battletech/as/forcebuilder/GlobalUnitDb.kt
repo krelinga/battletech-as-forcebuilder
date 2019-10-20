@@ -33,5 +33,17 @@ object GlobalUnitDb : UnitDb() {
         add(Unit("Black Hawk F", 36))
         add(Unit("Black Hawk H", 45))
         add(Unit("Black Hawk I", 42))
+
+        // Ryokens
+        add(Unit("Ryoken Prime", 43))
+        add(Unit("Ryoken A", 45))
+        add(Unit("Ryoken B", 39))
+        add(Unit("Ryoken C", 39))
+        add(Unit("Ryoken D", 39))
+        add(Unit("Ryoken E", 52))
+        add(Unit("Ryoken F", 37))
+        add(Unit("Ryoken G", 43))
+        add(Unit("Ryoken H", 42))
+        add(Unit("Ryoken I", 42))
     }
 }

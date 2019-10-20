@@ -7,5 +7,6 @@ object GlobalMiniatureDb : MiniatureDb() {
         add(Miniature("unpainted metal Vulture", GlobalUnitDb.withNamePrefix("Vulture")))
         add(Miniature("Black Hawk from ebay", GlobalUnitDb.withNamePrefix("Black Hawk")))
         add(Miniature("Black Hawk plastic", GlobalUnitDb.withNamePrefix("Black Hawk")))
+        add(Miniature("Ryoken with basic green paint", GlobalUnitDb.withNamePrefix("Ryoken")))
     }
 }
