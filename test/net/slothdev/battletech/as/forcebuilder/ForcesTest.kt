@@ -24,19 +24,19 @@ internal class ForcesTest {
         @Test
         fun `difference between side1 point value and target matters`() {
             val f = Forces(1, setOf(Miniature(Unit("foo", 0))), setOf(Miniature(Unit("bar", 1))))
-            assert(f.score < 1.0)
+            assertTrue(f.score < 1.0)
         }
 
         @Test
         fun `difference between side2 point value and target matters`() {
             val f = Forces(1, setOf(Miniature(Unit("foo", 1))), setOf(Miniature(Unit("bar", 0))))
-            assert(f.score < 1.0)
+            assertTrue(f.score < 1.0)
         }
 
         @Test
         fun `no differences gives a score of 1`() {
             val f = Forces(10, setOf(Miniature(Unit("foo", 10))), setOf(Miniature(Unit("bar", 10))))
-            assert(f.score == 1.0)
+            assertTrue(f.score == 1.0)
         }
 
         @Test
@@ -45,19 +45,20 @@ internal class ForcesTest {
                     Forces(10, setOf(Miniature(Unit("foo", 14))), setOf(Miniature(Unit("bar", 6))))
             val smallDiffBetweenSides =
                     Forces(10, setOf(Miniature(Unit("foo", 6))), setOf(Miniature(Unit("bar", 6))))
-            assert(smallDiffBetweenSides.score > bigDiffBetweenSides.score) {
-                "smallDiffBetweenSides: ${smallDiffBetweenSides.score} vs bigDiffBetweenSides: ${bigDiffBetweenSides.score}"
-            }
+            assertTrue(smallDiffBetweenSides.score > bigDiffBetweenSides.score,
+                       "smallDiffBetweenSides: ${smallDiffBetweenSides.score} vs bigDiffBetweenSides: ${bigDiffBetweenSides.score}")
         }
     }
 
-    @Nested inner class Comparison {
-        @Test fun `side1 and side2 are interchangable when compairing`() {
+    @Nested
+    inner class Comparison {
+        @Test
+        fun `side1 and side2 are interchangable when compairing`() {
             val foo = Miniature(Unit("foo", 10))
             val bar = Miniature(Unit("bar", 20))
             val f1 = Forces(10, setOf(foo), setOf(bar))
             val f2 = Forces(10, setOf(bar), setOf(foo))
-            assert(f1 == f2)
+            assertTrue(f1 == f2)
         }
     }
 }
