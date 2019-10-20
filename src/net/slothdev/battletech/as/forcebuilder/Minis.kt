@@ -6,7 +6,8 @@ data class Unit(val name: String, val pv: Int) {
     }
 }
 
-class UnitDb {
+// only open so that GlobalUnitDb can inherit from this.
+open class UnitDb {
     private val unitSet: MutableSet<Unit> = mutableSetOf()
     private val nameSet: MutableSet<String> = mutableSetOf()
 
