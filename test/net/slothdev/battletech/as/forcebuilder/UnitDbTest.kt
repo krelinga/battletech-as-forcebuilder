@@ -23,4 +23,28 @@ internal class UnitDbTest {
             assertFailsWith<IllegalArgumentException> { db.add(Unit("foo", 20)) }
         }
     }
+
+    @Nested
+    inner class WithNamePrefix {
+        @Test
+        fun `needle at beginning is found`() {
+            val unitDb = UnitDb()
+            unitDb.add(Unit("foobar", 1))
+            assertTrue(unitDb.withNamePrefix("foo").isNotEmpty())
+        }
+
+        @Test
+        fun `needle in middle is not found`() {
+            val unitDb = UnitDb()
+            unitDb.add(Unit("barfoo", 1))
+            assertTrue(unitDb.withNamePrefix("foo").isEmpty())
+        }
+
+        @Test
+        fun `needle which is not present is not found`() {
+            val unitDb = UnitDb()
+            unitDb.add(Unit("barbar", 1))
+            assertTrue(unitDb.withNamePrefix("foo").isEmpty())
+        }
+    }
 }

@@ -18,6 +18,11 @@ open class UnitDb {
     }
 
     fun asSet(): Set<Unit> = unitSet
+
+    fun withNamePrefix(name: String): Set<Unit> {
+        return asSet().filter { it.name.startsWith(name) }.toSet()
+    }
+
 }
 
 data class Miniature(val kind: String, val supportedUnits: Set<Unit>) {
@@ -29,7 +34,8 @@ data class Miniature(val kind: String, val supportedUnits: Set<Unit>) {
     constructor(unit: Unit) : this(unit.name, setOf(unit))
 }
 
-class MiniatureDb {
+// only open to be used with GlobalMiniatureDb
+open class MiniatureDb {
     private val miniatureSet: MutableSet<Miniature> = mutableSetOf()
     private val kindSet: MutableSet<String> = mutableSetOf()
 
