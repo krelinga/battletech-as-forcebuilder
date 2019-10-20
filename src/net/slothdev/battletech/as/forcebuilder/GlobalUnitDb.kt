@@ -22,5 +22,16 @@ object GlobalUnitDb : UnitDb() {
         add(Unit("Vulture F", 43))
         add(Unit("Vulture G", 39))
         add(Unit("Vulture H", 48))
+
+        //  Black Hawks
+        add(Unit("Black Hawk Prime", 41))
+        add(Unit("Black Hawk A", 35))
+        add(Unit("Black Hawk B", 32))
+        add(Unit("Black Hawk C", 31))
+        add(Unit("Black Hawk D", 29))
+        add(Unit("Black Hawk E", 40))
+        add(Unit("Black Hawk F", 36))
+        add(Unit("Black Hawk H", 45))
+        add(Unit("Black Hawk I", 42))
     }
 }
