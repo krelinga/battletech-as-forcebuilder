@@ -48,3 +48,10 @@ class UnitDslFamilyContext(family: String, unitDb: UnitDb,
         generationContext.builder()
     }
 }
+
+class UnitDslFamily(private val unitDb: UnitDb) {
+    operator fun invoke(name: String, builder: UnitDslFamilyContext.() -> kotlin.Unit) {
+        val context = UnitDslFamilyContext(name, unitDb)
+        context.builder()
+    }
+}

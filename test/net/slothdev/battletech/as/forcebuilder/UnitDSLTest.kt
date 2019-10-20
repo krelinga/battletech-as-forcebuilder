@@ -7,8 +7,8 @@ internal class UnitDSLTest {
     @Test
     fun `variant in family`() {
         val unitDb = UnitDb()
-        val familyContext = UnitDslFamilyContext("f", unitDb)
-        familyContext.apply {
+        val family = UnitDslFamily(unitDb)
+        family("f") {
             mv = 10
 
             variant("foo", 10) {
@@ -21,8 +21,8 @@ internal class UnitDSLTest {
     @Test
     fun `variant in generation in family`() {
         val unitDb = UnitDb()
-        val familyContext = UnitDslFamilyContext("f", unitDb)
-        familyContext.apply {
+        val family = UnitDslFamily(unitDb)
+        family("f") {
             mv = 10
 
             generation("bar") {
@@ -37,8 +37,8 @@ internal class UnitDSLTest {
     @Test
     fun `multiple variants in generation`() {
         val unitDb = UnitDb()
-        val familyContext = UnitDslFamilyContext("f", unitDb)
-        familyContext.apply {
+        val family = UnitDslFamily(unitDb)
+        family("f") {
             mv = 10
 
             generation("bar") {
