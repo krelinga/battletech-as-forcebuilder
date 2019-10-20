@@ -12,7 +12,9 @@ open class UnitDb {
     private val nameSet: MutableSet<String> = mutableSetOf()
 
     fun add(unit: Unit) {
-        require(!nameSet.contains(unit.name))
+        require(!nameSet.contains(unit.name)) {
+            "The database already has a unit named ${unit.name}"
+        }
         nameSet.add(unit.name)
         unitSet.add(unit)
     }
