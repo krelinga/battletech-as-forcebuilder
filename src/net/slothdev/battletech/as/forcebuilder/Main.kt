@@ -1,10 +1,23 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
+fun prettyPrintForces(forces: Forces) {
+    fun prettyPrintOneSide(side: Set<Miniature>, sideNum: Int) {
+        val sidePv = side.fold(0) { sum, current -> sum + current.supportedUnits.first().pv }
+        val header = "Side $sideNum (${sidePv} points)"
+        println(header)
+        println("===================")
+        for (mini in side) {
+            val unit = mini.supportedUnits.first()
+            println("* ${mini.kind} as ${unit.name} costing ${unit.pv} points")
+        }
+    }
+
+    prettyPrintOneSide(forces.side1, 1)
+    println()
+    prettyPrintOneSide(forces.side2, 2)
+}
+
 fun main() {
-    val minis = setOf<Miniature>(Miniature(Unit("Mad Cat Prime", 10)),
-                                 Miniature(Unit("Vulture Prime", 20)),
-                                 Miniature(Unit("Thor Prime", 30)),
-                                 Miniature(Unit("Loki Prime", 40)))
-    val builder = Builder(minis)
-    println(builder.build(2, 1))
+    val builder = Builder(GlobalMiniatureDb.asSet())
+    prettyPrintForces(builder.build(3, 120))
 }
