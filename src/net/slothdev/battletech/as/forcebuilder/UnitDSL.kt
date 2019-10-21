@@ -64,6 +64,10 @@ class UnitDslFamilyContext(family: String, unitDb: UnitDb,
         val generationContext = UnitDslGenerationContext(family, name, context, unitDb)
         generationContext.builder()
     }
+
+    fun generation(builder: UnitDslGenerationContext.() -> kotlin.Unit) {
+        generation("", builder)
+    }
 }
 
 class UnitDslFamily(private val unitDb: UnitDb) {

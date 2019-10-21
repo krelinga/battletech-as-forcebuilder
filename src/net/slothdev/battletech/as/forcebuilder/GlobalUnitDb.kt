@@ -1,16 +1,70 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
 object GlobalUnitDb : UnitDb() {
+    private val family = UnitDslFamily(this)
+
     init {
-        // Mad Cats
-        add(Unit("Mad Cat Prime", 54))
-        add(Unit("Mad Cat A", 59))
-        add(Unit("Mad Cat B", 48))
-        add(Unit("Mad Cat C", 50))
-        add(Unit("Mad Cat D", 51))
-        add(Unit("Mad Cat E", 53))
-        add(Unit("Mad Cat F", 54))
-        add(Unit("Mad Cat H", 59))
+        family("Mad Cat") {
+            generation() {
+                sz = 3
+                tmm = 2
+                mv = 10
+                // TODO: add roles per-variant (because they're different)
+                role = Role.BRAWLER
+                // TODO: make mvj optional?
+                mvj = 0
+                a = 8
+                s = 4
+                variant("Prime", 54) {
+                    dS = 5
+                    dM = 5
+                    dL = 4
+                    ov = 1
+                }
+                variant("A", 59) {
+                    dS = 7
+                    dM = 7
+                    dL = 3
+                    ov = 1
+                }
+                variant("B", 48) {
+                    dS = 4
+                    dM = 4
+                    dL = 4
+                    ov = 0
+                }
+                variant("C", 50) {
+                    dS = 4
+                    dM = 4
+                    dL = 4
+                    ov = 1
+                }
+                variant("D", 51) {
+                    dS = 5
+                    dM = 5
+                    dL = 3
+                    ov = 1
+                }
+                variant("E", 53) {
+                    dS = 7
+                    dM = 5
+                    dL = 4
+                    ov = 0
+                }
+                variant("F", 54) {
+                    dS = 5
+                    dM = 5
+                    dL = 4
+                    ov = 2
+                }
+                variant("H", 59) {
+                    dS = 6
+                    dM = 6
+                    dL = 4
+                    ov = 1
+                }
+            }
+        }
 
         // Vultures
         add(Unit("Vulture Prime", 42))
