@@ -1,6 +1,12 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
-data class Unit(val name: String, val pv: Int) {
+enum class Role {
+    BRAWLER,
+}
+
+data class Unit(val name: String, val pv: Int, val sz: Int = 0, val tmm: Int = 0, val mv: Int = 0,
+                val mvj: Int = 0, val role: Role? = null, val dS: Int? = null, val dM: Int? = null,
+                val dL: Int? = null, val ov: Int = 0, val a: Int = 0, val s: Int = 0) {
     init {
         require(pv >= 0) { "pv parameter must be >= 0, we saw $pv" }
     }

@@ -1,11 +1,25 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
 interface UnitDslProperties {
+    var sz: Int?
+    var tmm: Int?
     var mv: Int?
     var mvj: Int?
+    var role: Role?
+    var dS: Int?
+    var dM: Int?
+    var dL: Int?
+    var ov: Int?
+    var a: Int?
+    var s: Int?
 }
 
-data class UnitDslContext(override var mv: Int? = null, override var mvj: Int? = null) :
+data class UnitDslContext(override var sz: Int? = null, override var tmm: Int? = null,
+                          override var mv: Int? = null, override var mvj: Int? = null,
+                          override var role: Role? = null, override var dS: Int? = null,
+                          override var dM: Int? = null, override var dL: Int? = null,
+                          override var ov: Int? = null, override var a: Int? = null,
+                          override var s: Int? = null) :
         UnitDslProperties
 
 fun propertiesToUnit(family: String, generation: String, variant: String, pv: Int,
@@ -20,7 +34,10 @@ fun propertiesToUnit(family: String, generation: String, variant: String, pv: In
     if (variant.isNotEmpty()) {
         nameParts.add(variant)
     }
-    return Unit(nameParts.joinToString(" "), pv)
+    return Unit(nameParts.joinToString(" "), pv, sz = properties.sz!!, tmm = properties.tmm!!,
+                mv = properties.mv!!, mvj = properties.mvj!!, role = properties.role!!,
+                dS = properties.dS, dM = properties.dM, dL = properties.dL, ov = properties.ov!!,
+                a = properties.a!!, s = properties.s!!)
 }
 
 open class UnitDslGenerationContext(protected val family: String, protected val generation: String,
