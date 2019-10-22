@@ -4,6 +4,37 @@ enum class Role {
     BRAWLER,
 }
 
+class Damage private constructor(val value: Int, val minimal: Boolean) {
+    init {
+        require(value >= 0)
+        require(!minimal || value == 0)
+    }
+
+    constructor(value: Int) : this(value, false)
+
+    companion object {
+        fun minimal() = Damage(0, true)
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Damage
+
+        if (value != other.value) return false
+        if (minimal != other.minimal) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = value
+        result = 31 * result + minimal.hashCode()
+        return result
+    }
+}
+
 data class Unit(val name: String, val pv: Int, val sz: Int = 0, val tmm: Int = 0, val mv: Int = 0,
                 val mvj: Int = 0, val role: Role? = null, val dS: Int? = null, val dM: Int? = null,
                 val dL: Int? = null, val ov: Int = 0, val a: Int = 0, val s: Int = 0) {
