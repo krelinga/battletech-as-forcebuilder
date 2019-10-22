@@ -76,3 +76,18 @@ class UnitDslFamily(private val unitDb: UnitDb) {
         context.builder()
     }
 }
+
+/*
+family("foo", role = brawler, sz = 2, tmm = 3, mv = 10) {
+  generation("bar", ov = 1, a = 10, s = 5) {
+    variant("baz", dS = 5, dM = 3, dL = min)
+    variant("biff", dS = 6, dM = 1, dL = 0)
+  }
+}
+family("foo", role = brawler, sz = 2, tmm = 3, mv = 10) {
+  generation("bar", ov = 1, a = 10, s = 5) {
+    variant("baz", d = D(s = 5, m = 3, l = min))
+    variant("biff", d = D(s = 6, m = 1, l = 0))
+  }
+}
+ */
