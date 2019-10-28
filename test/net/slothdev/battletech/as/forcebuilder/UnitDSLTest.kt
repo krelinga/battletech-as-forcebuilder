@@ -60,6 +60,9 @@ internal class UnitDSLTest {
 
                 variant("baz", 30, mvj = 9, d = dmg(6, 6, 5))
             }
+            generation("next", a = 9, s = 5) {
+                variant("baz", 30, mvj = 9, d = dmg(6, 6, 5))
+            }
         }
         assertEquals(unitDb.asSet(),
                      setOf(Unit("f bar foo", 20, size = 3, targetMovementModifier = 2,
@@ -69,6 +72,10 @@ internal class UnitDSLTest {
                            Unit("f bar baz", 30, size = 3, targetMovementModifier = 2,
                                 movement = 10, role = Role.BRAWLER, overheat = 0, armor = 8,
                                 structure = 4, movementJumping = 9, damageShort = Damage(6),
+                                damageMedium = Damage(6), damageLong = Damage(5)),
+                           Unit("f next baz", 30, size = 3, targetMovementModifier = 2,
+                                movement = 10, role = Role.BRAWLER, overheat = 0, armor = 9,
+                                structure = 5, movementJumping = 9, damageShort = Damage(6),
                                 damageMedium = Damage(6), damageLong = Damage(5))))
     }
 

@@ -136,6 +136,22 @@ class UnitDslFamilyContext(family: String, unitDb: UnitDb,
     fun generation(builder: UnitDslGenerationContext.() -> kotlin.Unit) {
         generation("", builder)
     }
+
+    fun generation(name: String, d: UnitDslDamage? = null, sz: Int? = null, tmm: Int? = null,
+                   mv: Int? = null, mvj: Int? = null, role: Role? = null, ov: Int? = null,
+                   a: Int? = null, s: Int? = null,
+                   builder: UnitDslGenerationContext.() -> kotlin.Unit) {
+        val context = baseContext.copy()
+        context.update(d, sz, tmm, mv, mvj, role, ov, a, s)
+        val generationContext = UnitDslGenerationContext(family, name, context, unitDb)
+        generationContext.builder()
+    }
+
+    fun generation(d: UnitDslDamage? = null, sz: Int? = null, tmm: Int? = null, mv: Int? = null,
+                   mvj: Int? = null, role: Role? = null, ov: Int? = null, a: Int? = null,
+                   s: Int? = null, builder: UnitDslGenerationContext.() -> kotlin.Unit) {
+        generation("", d, sz, tmm, mv, mvj, role, ov, a, s, builder)
+    }
 }
 
 class UnitDslFamily(private val unitDb: UnitDb) {
