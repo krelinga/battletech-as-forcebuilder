@@ -37,7 +37,7 @@ class Damage private constructor(val value: Int, val minimal: Boolean) {
 
 data class Unit(val name: String, val pointValue: Int, val size: Int = 0,
                 val targetMovementModifier: Int = 0, val movement: Int = 0,
-                val movementJumping: Int = 0, val role: Role? = null,
+                val movementJumping: Int = 0, val role: Role = Role.BRAWLER,
                 val damageShort: Damage = Damage(0), val damageMedium: Damage = Damage(0),
                 val damageLong: Damage = Damage(0), val overheat: Int = 0,
                 val armor: Int = 0, val structure: Int = 0) {
