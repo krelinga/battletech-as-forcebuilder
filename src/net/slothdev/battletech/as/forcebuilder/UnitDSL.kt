@@ -45,7 +45,7 @@ fun propertiesToUnit(family: String, generation: String, variant: String, pv: In
                 movementJumping = properties.mvj!!, role = properties.role!!,
                 damageShort = properties.dS, damageMedium = properties.dM,
                 damageLong = properties.dL, overheat = properties.ov!!, armor = properties.a!!,
-                s = properties.s!!)
+                structure = properties.s!!)
 }
 
 open class UnitDslGenerationContext(protected val family: String, protected val generation: String,

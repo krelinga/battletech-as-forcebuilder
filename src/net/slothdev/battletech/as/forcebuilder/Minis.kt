@@ -39,7 +39,7 @@ data class Unit(val name: String, val pointValue: Int, val size: Int = 0,
                 val targetMovementModifier: Int = 0, val movement: Int = 0,
                 val movementJumping: Int = 0, val role: Role? = null, val damageShort: Int? = null,
                 val damageMedium: Int? = null, val damageLong: Int? = null, val overheat: Int = 0,
-                val armor: Int = 0, val s: Int = 0) {
+                val armor: Int = 0, val structure: Int = 0) {
     init {
         require(pointValue >= 0) { "pv parameter must be >= 0, we saw $pointValue" }
     }
