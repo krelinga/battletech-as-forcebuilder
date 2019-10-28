@@ -159,6 +159,23 @@ class UnitDslFamily(private val unitDb: UnitDb) {
         val context = UnitDslFamilyContext(name, unitDb)
         context.builder()
     }
+
+    operator fun invoke(name: String, d: UnitDslDamage? = null, sz: Int? = null, tmm: Int? = null,
+                        mv: Int? = null, mvj: Int? = null, role: Role? = null, ov: Int? = null,
+                        a: Int? = null, s: Int? = null,
+                        builder: UnitDslFamilyContext.() -> kotlin.Unit) {
+        val baseContext = UnitDslContext()
+        baseContext.update(d, sz, tmm, mv, mvj, role, ov, a, s)
+        val context = UnitDslFamilyContext(name, unitDb, baseContext)
+        context.builder()
+    }
+
+    operator fun invoke(d: UnitDslDamage? = null, sz: Int? = null, tmm: Int? = null,
+                        mv: Int? = null, mvj: Int? = null, role: Role? = null, ov: Int? = null,
+                        a: Int? = null, s: Int? = null,
+                        builder: UnitDslFamilyContext.() -> kotlin.Unit) {
+        invoke("", d, sz, tmm, mv, mvj, role, ov, a, s, builder)
+    }
 }
 
 /*
