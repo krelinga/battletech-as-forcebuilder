@@ -27,7 +27,7 @@ internal class UnitDSLTest {
         assertEquals(unitDb.asSet(),
                      setOf(Unit("f foo", 10, size = 3, targetMovementModifier = 2, movement = 10,
                                 role = Role.BRAWLER, a = 8, s = 4, ov = 0, movementJumping = 8,
-                                damageShort = 5, dM = 5, dL = 4)))
+                                damageShort = 5, damageMedium = 5, dL = 4)))
     }
 
     @Test
@@ -57,7 +57,7 @@ internal class UnitDSLTest {
                      setOf(Unit("f bar foo", 20, size = 3, targetMovementModifier = 2,
                                 movement = 10,
                                 role = Role.BRAWLER, ov = 0, a = 8, s = 4, movementJumping = 8,
-                                damageShort = 5, dM = 5, dL = 4)))
+                                damageShort = 5, damageMedium = 5, dL = 4)))
     }
 
     @Test
@@ -93,8 +93,8 @@ internal class UnitDSLTest {
             }
         }
         val unitBase = Unit("", 1, size = 3, targetMovementModifier = 2, movement = 10,
-                            role = Role.BRAWLER,
-                            ov = 0, a = 8, s = 4, damageShort = 5, dM = 5, dL = 4)
+                            role = Role.BRAWLER, ov = 0, a = 8, s = 4, damageShort = 5,
+                            damageMedium = 5, dL = 4)
         assertEquals(unitDb.asSet(),
                      setOf(unitBase.copy(name = "f bar foo", pointValue = 30, movementJumping = 8),
                            unitBase.copy("f bar foo2", 40, movementJumping = 9),
