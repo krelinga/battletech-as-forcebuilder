@@ -44,7 +44,8 @@ fun propertiesToUnit(family: String, generation: String, variant: String, pv: In
                 targetMovementModifier = properties.tmm!!, movement = properties.mv!!,
                 movementJumping = properties.mvj!!, role = properties.role!!,
                 damageShort = Damage(properties.dS!!), damageMedium = Damage(properties.dM!!),
-                damageLong = properties.dL, overheat = properties.ov!!, armor = properties.a!!,
+                damageLong = Damage(properties.dL!!), overheat = properties.ov!!,
+                armor = properties.a!!,
                 structure = properties.s!!)
 }
 
