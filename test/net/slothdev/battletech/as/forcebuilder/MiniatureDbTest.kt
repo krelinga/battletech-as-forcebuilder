@@ -10,8 +10,8 @@ internal class MiniatureDbTest {
         fun `minis with distinct kinds are added`() {
             val db = MiniatureDb()
             val u = Unit("Foo", 10)
-            val m1 = Miniature("foo-x", setOf(u))
-            val m2 = Miniature("foo-y", setOf(u))
+            val m1 = Miniature("foo-x", Color.GREEN, setOf(u))
+            val m2 = Miniature("foo-y", Color.GREEN, setOf(u))
             db.add(m1)
             db.add(m2)
             assertEquals(setOf(m1, m2), db.asSet())
@@ -21,8 +21,8 @@ internal class MiniatureDbTest {
         fun `minis with duplicate names are rejected`() {
             val db = MiniatureDb()
             val u = Unit("Foo", 10)
-            db.add(Miniature(u))
-            assertFailsWith<IllegalArgumentException> { db.add(Miniature(u)) }
+            db.add(Miniature(Color.GREEN, u))
+            assertFailsWith<IllegalArgumentException> { db.add(Miniature(Color.GREEN, u)) }
         }
     }
 }

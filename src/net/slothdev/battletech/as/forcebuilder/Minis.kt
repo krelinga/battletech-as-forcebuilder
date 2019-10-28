@@ -67,13 +67,17 @@ open class UnitDb {
 
 }
 
-data class Miniature(val kind: String, val supportedUnits: Set<Unit>) {
+enum class Color {
+    BROWN, GREEN, UNPAINTED_GRAY_PLASTIC, UNPAINTED_PEWTER, BLACK,
+}
+
+data class Miniature(val kind: String, val primaryColor: Color, val supportedUnits: Set<Unit>) {
     init {
         require(supportedUnits.isNotEmpty())
     }
 
     // Shortcut for miniatures composed of a single unit.
-    constructor(unit: Unit) : this(unit.name, setOf(unit))
+    constructor(primaryColor: Color, unit: Unit) : this(unit.name, primaryColor, setOf(unit))
 }
 
 // only open to be used with GlobalMiniatureDb
