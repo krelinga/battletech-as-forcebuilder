@@ -26,10 +26,10 @@ data class Forces(val targetPv: Int, private val miniatures: Set<Set<Miniature>>
     val score: Double
         get() {
             val side1Points = side1.fold(0) { sum, element ->
-                sum + element.supportedUnits.first().pv
+                sum + element.supportedUnits.first().pointValue
             }
             val side2Points = side2.fold(0) { sum, element ->
-                sum + element.supportedUnits.first().pv
+                sum + element.supportedUnits.first().pointValue
             }
 
             fun pointDiff(x: Int, y: Int): Double {

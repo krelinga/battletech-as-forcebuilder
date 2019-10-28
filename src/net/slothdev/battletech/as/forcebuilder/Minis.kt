@@ -35,11 +35,12 @@ class Damage private constructor(val value: Int, val minimal: Boolean) {
     }
 }
 
-data class Unit(val name: String, val pv: Int, val sz: Int = 0, val tmm: Int = 0, val mv: Int = 0,
+data class Unit(val name: String, val pointValue: Int, val sz: Int = 0, val tmm: Int = 0,
+                val mv: Int = 0,
                 val mvj: Int = 0, val role: Role? = null, val dS: Int? = null, val dM: Int? = null,
                 val dL: Int? = null, val ov: Int = 0, val a: Int = 0, val s: Int = 0) {
     init {
-        require(pv >= 0) { "pv parameter must be >= 0, we saw $pv" }
+        require(pointValue >= 0) { "pv parameter must be >= 0, we saw $pointValue" }
     }
 }
 

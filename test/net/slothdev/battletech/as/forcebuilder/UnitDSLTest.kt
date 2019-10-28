@@ -92,9 +92,10 @@ internal class UnitDSLTest {
         val unitBase =
                 Unit("", 1, sz = 3, tmm = 2, mv = 10, role = Role.BRAWLER, ov = 0, a = 8, s = 4,
                      dS = 5, dM = 5, dL = 4)
-        assertEquals(unitDb.asSet(), setOf(unitBase.copy(name = "f bar foo", pv = 30, mvj = 8),
-                                           unitBase.copy("f bar foo2", 40, mvj = 9),
-                                           unitBase.copy("f bar " + "foo3", 50, mvj = 10),
-                                           unitBase.copy("f bar", 60, mvj = 11)))
+        assertEquals(unitDb.asSet(),
+                     setOf(unitBase.copy(name = "f bar foo", pointValue = 30, mvj = 8),
+                           unitBase.copy("f bar foo2", 40, mvj = 9),
+                           unitBase.copy("f bar " + "foo3", 50, mvj = 10),
+                           unitBase.copy("f bar", 60, mvj = 11)))
     }
 }
