@@ -1,5 +1,7 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
+data class UnitDslDamage(var s: Int? = null, var m: Int? = null, var l: Int? = null)
+
 interface UnitDslProperties {
     var sz: Int?
     var tmm: Int?
