@@ -2,6 +2,10 @@ package net.slothdev.battletech.`as`.forcebuilder
 
 data class UnitDslDamage(var s: Damage? = null, var m: Damage? = null, var l: Damage? = null)
 
+data class UnitDslState(val d: UnitDslDamage = UnitDslDamage(), var sz: Int? = null,
+                        var tmm: Int? = null, var mv: Int? = null, var mvj: Int? = null,
+                        var ov: Int? = null, var a: Int? = null, var s: Int? = null)
+
 interface UnitDslProperties {
     var sz: Int?
     var tmm: Int?
