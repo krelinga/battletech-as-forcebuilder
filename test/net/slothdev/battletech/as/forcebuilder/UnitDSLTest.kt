@@ -26,8 +26,8 @@ internal class UnitDSLTest {
         }
         assertEquals(unitDb.asSet(),
                      setOf(Unit("f foo", 10, size = 3, targetMovementModifier = 2, movement = 10,
-                                role = Role.BRAWLER, a = 8,
-                                s = 4, ov = 0, mvj = 8, dS = 5, dM = 5, dL = 4)))
+                                role = Role.BRAWLER, a = 8, s = 4, ov = 0, movementJumping = 8,
+                                dS = 5, dM = 5, dL = 4)))
     }
 
     @Test
@@ -56,8 +56,8 @@ internal class UnitDSLTest {
         assertEquals(unitDb.asSet(),
                      setOf(Unit("f bar foo", 20, size = 3, targetMovementModifier = 2,
                                 movement = 10,
-                                role = Role.BRAWLER,
-                                ov = 0, a = 8, s = 4, mvj = 8, dS = 5, dM = 5, dL = 4)))
+                                role = Role.BRAWLER, ov = 0, a = 8, s = 4, movementJumping = 8,
+                                dS = 5, dM = 5, dL = 4)))
     }
 
     @Test
@@ -97,9 +97,9 @@ internal class UnitDSLTest {
                             ov = 0, a = 8, s = 4,
                             dS = 5, dM = 5, dL = 4)
         assertEquals(unitDb.asSet(),
-                     setOf(unitBase.copy(name = "f bar foo", pointValue = 30, mvj = 8),
-                           unitBase.copy("f bar foo2", 40, mvj = 9),
-                           unitBase.copy("f bar " + "foo3", 50, mvj = 10),
-                           unitBase.copy("f bar", 60, mvj = 11)))
+                     setOf(unitBase.copy(name = "f bar foo", pointValue = 30, movementJumping = 8),
+                           unitBase.copy("f bar foo2", 40, movementJumping = 9),
+                           unitBase.copy("f bar " + "foo3", 50, movementJumping = 10),
+                           unitBase.copy("f bar", 60, movementJumping = 11)))
     }
 }

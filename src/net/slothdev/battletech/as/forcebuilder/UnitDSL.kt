@@ -42,7 +42,7 @@ fun propertiesToUnit(family: String, generation: String, variant: String, pv: In
     }
     return Unit(nameParts.joinToString(" "), pv, size = properties.sz!!,
                 targetMovementModifier = properties.tmm!!, movement = properties.mv!!,
-                mvj = properties.mvj!!, role = properties.role!!,
+                movementJumping = properties.mvj!!, role = properties.role!!,
                 dS = properties.dS, dM = properties.dM, dL = properties.dL, ov = properties.ov!!,
                 a = properties.a!!, s = properties.s!!)
 }
