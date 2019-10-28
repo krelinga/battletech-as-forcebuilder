@@ -12,9 +12,9 @@ interface UnitDslProperties {
     var mv: Int?
     var mvj: Int?
     var role: Role?
-    var dS: Int?
-    var dM: Int?
-    var dL: Int?
+    var dS: Damage?
+    var dM: Damage?
+    var dL: Damage?
     var ov: Int?
     var a: Int?
     var s: Int?
@@ -22,8 +22,8 @@ interface UnitDslProperties {
 
 data class UnitDslContext(override var sz: Int? = null, override var tmm: Int? = null,
                           override var mv: Int? = null, override var mvj: Int? = null,
-                          override var role: Role? = null, override var dS: Int? = null,
-                          override var dM: Int? = null, override var dL: Int? = null,
+                          override var role: Role? = null, override var dS: Damage? = null,
+                          override var dM: Damage? = null, override var dL: Damage? = null,
                           override var ov: Int? = null, override var a: Int? = null,
                           override var s: Int? = null) :
         UnitDslProperties
@@ -43,8 +43,8 @@ fun propertiesToUnit(family: String, generation: String, variant: String, pv: In
     return Unit(nameParts.joinToString(" "), pv, size = properties.sz!!,
                 targetMovementModifier = properties.tmm!!, movement = properties.mv!!,
                 movementJumping = properties.mvj!!, role = properties.role!!,
-                damageShort = Damage(properties.dS!!), damageMedium = Damage(properties.dM!!),
-                damageLong = Damage(properties.dL!!), overheat = properties.ov!!,
+                damageShort = properties.dS!!, damageMedium = properties.dM!!,
+                damageLong = properties.dL!!, overheat = properties.ov!!,
                 armor = properties.a!!,
                 structure = properties.s!!)
 }
@@ -53,6 +53,10 @@ open class UnitDslGenerationContext(protected val family: String, protected val 
                                     protected val baseContext: UnitDslContext,
                                     protected val unitDb: UnitDb) :
         UnitDslProperties by baseContext {
+    val min = Damage.minimal()
+
+    fun D(value: Int) = Damage(value)
+    
     fun variant(name: String, pv: Int, builder: UnitDslContext.() -> kotlin.Unit) {
         val context = baseContext.copy()
         context.builder()

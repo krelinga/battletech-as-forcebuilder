@@ -19,9 +19,9 @@ internal class UnitDSLTest {
 
             variant("foo", 10) {
                 mvj = 8
-                dS = 5
-                dM = 5
-                dL = 4
+                dS = D(5)
+                dM = D(5)
+                dL = D(4)
             }
         }
         assertEquals(unitDb.asSet(),
@@ -48,9 +48,9 @@ internal class UnitDSLTest {
 
                 variant("foo", 20) {
                     mvj = 8
-                    dS = 5
-                    dM = 5
-                    dL = 4
+                    dS = D(5)
+                    dM = D(5)
+                    dL = D(4)
                 }
             }
         }
@@ -75,9 +75,9 @@ internal class UnitDSLTest {
             generation("bar") {
                 a = 8
                 s = 4
-                dS = 5
-                dM = 5
-                dL = 4
+                dS = D(5)
+                dM = D(5)
+                dL = D(4)
 
                 variant("foo", 30) {
                     mvj = 8

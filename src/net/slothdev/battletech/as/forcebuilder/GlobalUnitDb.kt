@@ -16,51 +16,51 @@ object GlobalUnitDb : UnitDb() {
                 a = 8
                 s = 4
                 variant("Prime", 54) {
-                    dS = 5
-                    dM = 5
-                    dL = 4
+                    dS = D(5)
+                    dM = D(5)
+                    dL = D(4)
                     ov = 1
                 }
                 variant("A", 59) {
-                    dS = 7
-                    dM = 7
-                    dL = 3
+                    dS = D(7)
+                    dM = D(7)
+                    dL = D(3)
                     ov = 1
                 }
                 variant("B", 48) {
-                    dS = 4
-                    dM = 4
-                    dL = 4
+                    dS = D(4)
+                    dM = D(4)
+                    dL = D(4)
                     ov = 0
                 }
                 variant("C", 50) {
-                    dS = 4
-                    dM = 4
-                    dL = 4
+                    dS = D(4)
+                    dM = D(4)
+                    dL = D(4)
                     ov = 1
                 }
                 variant("D", 51) {
-                    dS = 5
-                    dM = 5
-                    dL = 3
+                    dS = D(5)
+                    dM = D(5)
+                    dL = D(3)
                     ov = 1
                 }
                 variant("E", 53) {
-                    dS = 7
-                    dM = 5
-                    dL = 4
+                    dS = D(7)
+                    dM = D(5)
+                    dL = D(4)
                     ov = 0
                 }
                 variant("F", 54) {
-                    dS = 5
-                    dM = 5
-                    dL = 4
+                    dS = D(5)
+                    dM = D(5)
+                    dL = D(4)
                     ov = 2
                 }
                 variant("H", 59) {
-                    dS = 6
-                    dM = 6
-                    dL = 4
+                    dS = D(6)
+                    dM = D(6)
+                    dL = D(4)
                     ov = 1
                 }
             }
