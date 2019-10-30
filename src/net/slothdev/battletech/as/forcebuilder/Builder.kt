@@ -44,9 +44,8 @@ class PvAndDistanceScorer(val targetPv: Int) : Scorer {
     }
 }
 
-data class Forces(val targetPv: Int, private val miniatures: Set<Set<Miniature>>) {
+data class Forces(val score: Score, private val miniatures: Set<Set<Miniature>>) {
     init {
-        require(targetPv > 0) { "targetPv must be > 0, saw $targetPv"}
         // Miniatures is a set of sets, where the entries in the outer sets comprise the two forces.
         // There's an edge case where the two forces are both empty, in which case there will be
         // only a single entry.
@@ -55,20 +54,15 @@ data class Forces(val targetPv: Int, private val miniatures: Set<Set<Miniature>>
     }
 
     // Allow specifying the sets for side1 and side2 gracefully.
-    constructor(targetPv: Int, side1: Set<Miniature>, side2: Set<Miniature>) : this(
-            targetPv, setOf(side1, side2))
+    constructor(score: Score, side1: Set<Miniature>, side2: Set<Miniature>) : this(score,
+                                                                                   setOf(side1,
+                                                                                         side2))
 
     // Some convenience methods for dealing with the expected number of sides.
     val side1
         get() = miniatures.first()
     val side2
         get() = miniatures.last()
-
-    val score: Double
-        get() {
-            val scorer = PvAndDistanceScorer(targetPv)
-            return scorer(side1, side2).finalScore
-        }
 }
 
 class BuilderException(message: String) : Exception(message)
@@ -130,8 +124,8 @@ class Builder private constructor(private val minis: List<Miniature>) {
     }
 
     private var miniState = listOf<MiniState>()
-    private var targetPv = 0
     private var unitsPerSide = 0
+    private var scorer: Scorer? = null
 
     private fun nextMiniState(): Boolean {
         val done = miniState.fold(true) { sum, entry -> sum && entry.done }
@@ -159,12 +153,12 @@ class Builder private constructor(private val minis: List<Miniature>) {
                 }
             }
         }
-        return Forces(targetPv, side1, side2)
+        return Forces(scorer!!(side1, side2), side1, side2)
     }
 
     private fun reset(unitsPerSide: Int, targetPvPerSide: Int) {
         this.unitsPerSide = unitsPerSide
-        targetPv = targetPvPerSide
+        scorer = PvAndDistanceScorer(targetPvPerSide)
         miniState = minis.map { MiniState(it) }
     }
 
@@ -182,7 +176,7 @@ class Builder private constructor(private val minis: List<Miniature>) {
         do {
             val current = currentSolution()
             if (!solutionIsOK(current)) continue
-            if (bestSolution?.score ?: 0.0 < current.score) {
+            if (bestSolution?.score?.finalScore ?: 0.0 < current.score.finalScore) {
                 bestSolution = current
             }
         } while (nextMiniState())
