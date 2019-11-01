@@ -3,14 +3,8 @@ package net.slothdev.battletech.`as`.forcebuilder
 import kotlin.math.abs
 import kotlin.math.sqrt
 
-data class Score(val finalScore: Double, val components: List<Pair<String, Double>>)
-
-interface Scorer {
-    operator fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): Score
-}
-
 class PvAndDistanceScorer(val targetPv: Int) : Scorer {
-    override fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): Score {
+    override fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): OldScore {
         val side1Points = side1.fold(0) { sum, element ->
             sum + element.supportedUnits.first().pointValue
         }
@@ -40,11 +34,11 @@ class PvAndDistanceScorer(val targetPv: Int) : Scorer {
                                        sqrt(side2TotalTerm)),
                                 pairOf("side1 points ($side1Points) vs side2 points ($side2Points)",
                                        pointDifferenceTerm))
-        return Score(finalScore, components)
+        return OldScore(finalScore, components)
     }
 }
 
-data class Forces(val score: Score, private val miniatures: Set<Set<Miniature>>) {
+data class Forces(val score: OldScore, private val miniatures: Set<Set<Miniature>>) {
     init {
         // Miniatures is a set of sets, where the entries in the outer sets comprise the two forces.
         // There's an edge case where the two forces are both empty, in which case there will be
@@ -54,8 +48,8 @@ data class Forces(val score: Score, private val miniatures: Set<Set<Miniature>>)
     }
 
     // Allow specifying the sets for side1 and side2 gracefully.
-    constructor(score: Score, side1: Set<Miniature>, side2: Set<Miniature>) : this(score,
-                                                                                   setOf(side1,
+    constructor(score: OldScore, side1: Set<Miniature>, side2: Set<Miniature>) : this(score,
+                                                                                      setOf(side1,
                                                                                          side2))
 
     // Some convenience methods for dealing with the expected number of sides.
