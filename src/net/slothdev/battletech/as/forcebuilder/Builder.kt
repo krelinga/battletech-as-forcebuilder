@@ -3,7 +3,7 @@ package net.slothdev.battletech.`as`.forcebuilder
 import kotlin.math.abs
 import kotlin.math.sqrt
 
-class PvAndDistanceScorer(val targetPv: Int) : Scorer {
+class PvAndDistanceScorer(val targetPv: Int) : OldScorer {
     override fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): OldScore {
         val side1Points = side1.fold(0) { sum, element ->
             sum + element.supportedUnits.first().pointValue
@@ -119,7 +119,7 @@ class Builder private constructor(private val minis: List<Miniature>) {
 
     private var miniState = listOf<MiniState>()
     private var unitsPerSide = 0
-    private var scorer: Scorer? = null
+    private var scorer: OldScorer? = null
 
     private fun nextMiniState(): Boolean {
         val done = miniState.fold(true) { sum, entry -> sum && entry.done }

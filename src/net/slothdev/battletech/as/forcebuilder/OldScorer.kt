@@ -11,6 +11,6 @@ interface Score {
     fun explain(): String
 }
 
-interface Scorer {
+interface OldScorer {
     operator fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): OldScore
 }
