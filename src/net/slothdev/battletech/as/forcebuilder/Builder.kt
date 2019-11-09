@@ -112,9 +112,7 @@ class Builder private constructor(private val minis: List<Miniature>) {
         return Forces(scorer!!(side1, side2), side1, side2)
     }
 
-    private fun reset(unitsPerSide: Int, targetPvPerSide: Int) {
-        this.unitsPerSide = unitsPerSide
-        scorer = PvAndDistanceScorer(targetPvPerSide)
+    private fun reset() {
         miniState = minis.map { MiniState(it) }
     }
 
@@ -129,7 +127,10 @@ class Builder private constructor(private val minis: List<Miniature>) {
             "not enough miniatures to allow $unitsPerSide units per-side"
         }
 
-        reset(unitsPerSide, targetPvPerSide)
+
+        this.unitsPerSide = unitsPerSide
+        this.scorer = PvAndDistanceScorer(targetPvPerSide)
+        reset()
         var bestSolution: Forces? = null
         do {
             val current = currentSolution()
