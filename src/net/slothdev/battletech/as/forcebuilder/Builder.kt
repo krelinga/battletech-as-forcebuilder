@@ -28,10 +28,10 @@ class BuilderException(message: String) : Exception(message)
 //  now, so we end up making the same force but with side1 and side2 swapped.  That means we're
 //  doing roughly 2x the work that is needed.  This implementation should still give correct
 //  results, it will just be inefficient.
-class Builder private constructor(private val minis: List<Miniature>) {
+class Builder private constructor(private val minis: List<Miniature>, private val scorer: Scorer) {
     // We want to enforce that the given set of minis is unique, but internally it makes more sense
     // to store them as a list.
-    constructor(minis: Set<Miniature>) : this(minis.toList())
+    constructor(minis: Set<Miniature>, scorer: Scorer) : this(minis.toList(), scorer)
 
     private enum class MiniSide {
         NONE, SIDE1, SIDE2
@@ -80,7 +80,6 @@ class Builder private constructor(private val minis: List<Miniature>) {
     }
 
     private var miniState = listOf<MiniState>()
-    private var scorer: Scorer? = null
 
     private fun nextMiniState(): Boolean {
         val done = miniState.fold(true) { sum, entry -> sum && entry.done }
@@ -108,15 +107,14 @@ class Builder private constructor(private val minis: List<Miniature>) {
                 }
             }
         }
-        return Forces(scorer!!(side1, side2), side1, side2)
+        return Forces(scorer(side1, side2), side1, side2)
     }
 
     private fun reset() {
         miniState = minis.map { MiniState(it) }
     }
 
-    fun build(unitsPerSide: Int, targetPvPerSide: Int): Forces {
-        this.scorer = BasicScorer(targetPvPerSide, unitsPerSide)
+    fun build(): Forces {
         reset()
         var bestSolution: Forces? = null
         do {

@@ -20,6 +20,6 @@ fun prettyPrintForces(forces: Forces) {
 }
 
 fun main() {
-    val builder = Builder(GlobalMiniatureDb.asSet())
-    prettyPrintForces(builder.build(3, 120))
+    val builder = Builder(GlobalMiniatureDb.asSet(), BasicScorer(120, 3))
+    prettyPrintForces(builder.build())
 }

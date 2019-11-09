@@ -88,4 +88,27 @@ internal class BasicScorerTest {
                                  Miniature(Color.GREEN, Unit("bar2", 6))))
         assertEquals(0.0, score.finalScore)
     }
+
+
+    @Test
+    fun `zero miniatures per-side throws exception`() {
+        assertFailsWith<IllegalArgumentException> { BasicScorer(1, 0) }
+    }
+
+
+    @Test
+    fun `zero target pv per-side throws exception`() {
+        assertFailsWith<IllegalArgumentException> { BasicScorer(0, 1) }
+    }
+
+
+    @Test
+    fun `negative miniatures per-side throws exception`() {
+        assertFailsWith<IllegalArgumentException> { BasicScorer(1, -1) }
+    }
+
+    @Test
+    fun `negative target pv per-side throws exception`() {
+        assertFailsWith<IllegalArgumentException> { BasicScorer(-1, 1) }
+    }
 }
