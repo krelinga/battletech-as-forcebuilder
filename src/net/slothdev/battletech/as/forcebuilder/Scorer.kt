@@ -9,8 +9,11 @@ interface Scorer {
     operator fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): Score
 }
 
-class BasicScorer(val targetPv: Int) : Scorer {
+class BasicScorer(val targetPv: Int, val unitsPerSide: Int) : Scorer {
     override fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): Score {
+        val side1UnitsTerm = if (side1.size == unitsPerSide) 1.0 else 0.0
+        val side2UnitsTerm = if (side2.size == unitsPerSide) 1.0 else 0.0
+
         val side1Points = side1.fold(0) { sum, element ->
             sum + element.supportedUnits.first().pointValue
         }
@@ -34,14 +37,20 @@ class BasicScorer(val targetPv: Int) : Scorer {
 
         // Take all the terms into account.  Treat the per-side total terms as less important than
         // the difference between the two sides.
-        val finalScore = sqrt(side1TotalTerm) * sqrt(side2TotalTerm) * pointDifferenceTerm
+        val finalScore = side1UnitsTerm * side2UnitsTerm * sqrt(side1TotalTerm) * sqrt(
+                side2TotalTerm) * pointDifferenceTerm
         fun pairOf(a: String, b: Double) = Pair<String, Double>(a, b)
-        val components = listOf(pairOf("Target points ($targetPv) vs side1 points ($side1Points)",
-                                       sqrt(side1TotalTerm)),
-                                pairOf("Target points ($targetPv) vs side2 points ($side1Points)",
-                                       sqrt(side2TotalTerm)),
-                                pairOf("side1 points ($side1Points) vs side2 points ($side2Points)",
-                                       pointDifferenceTerm))
+        val components =
+                listOf(pairOf("Target units ($unitsPerSide) vs side1 unit count (${side1.size})",
+                              side1UnitsTerm),
+                       pairOf("Target units ($unitsPerSide) vs side2 unit count (${side2.size})",
+                              side2UnitsTerm),
+                       pairOf("Target points ($targetPv) vs side1 points ($side1Points)",
+                              sqrt(side1TotalTerm)),
+                       pairOf("Target points ($targetPv) vs side2 points ($side1Points)",
+                              sqrt(side2TotalTerm)),
+                       pairOf("side1 points ($side1Points) vs side2 points ($side2Points)",
+                              pointDifferenceTerm))
         return Score(finalScore, components)
     }
 }
