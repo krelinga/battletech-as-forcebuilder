@@ -59,7 +59,7 @@ internal class BuilderTest {
         }
         @Test fun `not enough miniatures throws exception`() {
             val b = Builder(setOf(Miniature(Color.GREEN, Unit("foo", 10))))
-            assertFailsWith<IllegalArgumentException> { b.build(1, 1) }
+            assertFailsWith<BuilderException> { b.build(1, 1) }
         }
         @Test fun `zero miniatures per-side throws exception`() {
             val b = Builder(setOf(Miniature(Color.GREEN, Unit("foo", 10))))

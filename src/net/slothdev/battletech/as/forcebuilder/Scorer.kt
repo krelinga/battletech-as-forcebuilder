@@ -10,6 +10,12 @@ interface Scorer {
 }
 
 class BasicScorer(val targetPv: Int, val unitsPerSide: Int) : Scorer {
+    init {
+        require(unitsPerSide > 0) { "requested too few units per-side: $unitsPerSide" }
+        require(targetPv > 0) { "targetPvPerSide must be > 0, saw $targetPv" }
+
+    }
+
     override fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): Score {
         val side1UnitsTerm = if (side1.size == unitsPerSide) 1.0 else 0.0
         val side2UnitsTerm = if (side2.size == unitsPerSide) 1.0 else 0.0
