@@ -80,7 +80,6 @@ class Builder private constructor(private val minis: List<Miniature>) {
     }
 
     private var miniState = listOf<MiniState>()
-    private var unitsPerSide = 0
     private var scorer: Scorer? = null
 
     private fun nextMiniState(): Boolean {
@@ -116,10 +115,6 @@ class Builder private constructor(private val minis: List<Miniature>) {
         miniState = minis.map { MiniState(it) }
     }
 
-    private fun solutionIsOK(forces: Forces): Boolean {
-        return forces.side1.size == unitsPerSide && forces.side2.size == unitsPerSide
-    }
-
     fun build(unitsPerSide: Int, targetPvPerSide: Int): Forces {
         require(unitsPerSide > 0) { "requested too few units per-side: $unitsPerSide" }
         require(targetPvPerSide > 0) { "targetPvPerSide must be > 0, saw $targetPvPerSide" }
@@ -128,13 +123,11 @@ class Builder private constructor(private val minis: List<Miniature>) {
         }
 
 
-        this.unitsPerSide = unitsPerSide
         this.scorer = BasicScorer(targetPvPerSide, unitsPerSide)
         reset()
         var bestSolution: Forces? = null
         do {
             val current = currentSolution()
-            if (!solutionIsOK(current)) continue
             if (bestSolution?.score?.finalScore ?: 0.0 < current.score.finalScore) {
                 bestSolution = current
             }
