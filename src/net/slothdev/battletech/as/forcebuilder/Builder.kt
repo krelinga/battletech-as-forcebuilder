@@ -17,15 +17,17 @@ class PvAndDistanceScorer(val targetPv: Int) : OldScorer {
             return 1.0 / (1.0 + diff)
         }
 
-        // Terms between 0 and 1 that get smaller as the difference between sideNPoints and targetPv increases.
+        // Terms between 0 and 1 that get smaller as the difference between sideNPoints and targetPv
+        // increases.
         val side1TotalTerm = pointDiff(targetPv, side1Points)
         val side2TotalTerm = pointDiff(targetPv, side2Points)
 
-        // Term between 0 and 1 that gets smaller as the difference between side1Points and Side2Points increases.
+        // Term between 0 and 1 that gets smaller as the difference between side1Points and
+        // Side2Points increases.
         val pointDifferenceTerm = pointDiff(side1Points, side2Points)
 
-        // Take all the terms into account.  Treat the per-side total terms as less important than the difference
-        // between the two sides.
+        // Take all the terms into account.  Treat the per-side total terms as less important than
+        // the difference between the two sides.
         val finalScore = sqrt(side1TotalTerm) * sqrt(side2TotalTerm) * pointDifferenceTerm
         fun pairOf(a: String, b: Double) = Pair<String, Double>(a, b)
         val components = listOf(pairOf("Target points ($targetPv) vs side1 points ($side1Points)",
@@ -163,7 +165,9 @@ class Builder private constructor(private val minis: List<Miniature>) {
     fun build(unitsPerSide: Int, targetPvPerSide: Int): Forces {
         require(unitsPerSide > 0) { "requested too few units per-side: $unitsPerSide" }
         require(targetPvPerSide > 0) { "targetPvPerSide must be > 0, saw $targetPvPerSide" }
-        require(minis.size >= 2 * unitsPerSide) { "not enough miniatures to allow $unitsPerSide units per-side" }
+        require(minis.size >= 2 * unitsPerSide) {
+            "not enough miniatures to allow $unitsPerSide units per-side"
+        }
 
         reset(unitsPerSide, targetPvPerSide)
         var bestSolution: Forces? = null
