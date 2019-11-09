@@ -129,7 +129,7 @@ class Builder private constructor(private val minis: List<Miniature>) {
 
 
         this.unitsPerSide = unitsPerSide
-        this.scorer = PvAndDistanceScorer(targetPvPerSide)
+        this.scorer = BasicScorer(targetPvPerSide)
         reset()
         var bestSolution: Forces? = null
         do {

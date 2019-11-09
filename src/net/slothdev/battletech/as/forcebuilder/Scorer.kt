@@ -9,7 +9,7 @@ interface Scorer {
     operator fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): Score
 }
 
-class PvAndDistanceScorer(val targetPv: Int) : Scorer {
+class BasicScorer(val targetPv: Int) : Scorer {
     override fun invoke(side1: Set<Miniature>, side2: Set<Miniature>): Score {
         val side1Points = side1.fold(0) { sum, element ->
             sum + element.supportedUnits.first().pointValue
