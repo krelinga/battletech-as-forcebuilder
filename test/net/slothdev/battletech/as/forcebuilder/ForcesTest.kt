@@ -4,7 +4,7 @@ import org.junit.jupiter.api.*
 import kotlin.test.*
 
 internal class ForcesTest {
-    val dummyScore = OldScore(1.0, listOf())
+    val dummyScore = Score(1.0, listOf())
 
     @Nested
     inner class Constructor {

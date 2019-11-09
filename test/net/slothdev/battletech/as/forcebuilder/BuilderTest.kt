@@ -23,10 +23,10 @@ internal class BuilderTest {
             val baz = Miniature(Color.GREEN, Unit("baz", 51))
             val biff = Miniature(Color.GREEN, Unit("biff", 49))
             val targetPv = 100
-            val expected = Forces(OldScore(1.0, listOf()), setOf(foo, bar), setOf(baz, biff))
+            val expected = Forces(Score(1.0, listOf()), setOf(foo, bar), setOf(baz, biff))
             val builder = Builder(setOf(foo, bar, baz, biff))
             val actual = builder.build(2, targetPv)
-            assertEquals(expected, actual.copy(score = OldScore(1.0, listOf())))
+            assertEquals(expected, actual.copy(score = Score(1.0, listOf())))
         }
 
         @Test
@@ -36,12 +36,12 @@ internal class BuilderTest {
             val m2u1 = Unit("M2-U1", 50)
             val m2 = Miniature("M2", Color.GREEN, setOf(m2u1, Unit("M2-U2", 75)))
             val targetPv = 50
-            val expected = Forces(OldScore(1.0, listOf()),
+            val expected = Forces(Score(1.0, listOf()),
                                   setOf(Miniature("M1", Color.GREEN, setOf(m1u1))),
                                   setOf(Miniature("M2", Color.GREEN, setOf(m2u1))))
             val builder = Builder(setOf(m1, m2))
             val actual = builder.build(1, targetPv)
-            assertEquals(expected, actual.copy(score = OldScore(1.0, listOf())))
+            assertEquals(expected, actual.copy(score = Score(1.0, listOf())))
         }
         @Test
         fun `supports multiple units per-miniature last unit can be chosen`() {
@@ -50,7 +50,7 @@ internal class BuilderTest {
             val m2u1 = Unit("M2-U1", 50)
             val m2 = Miniature("M2", Color.GREEN, setOf(Unit("M2-U2", 75), m2u1))
             val targetPv = 50
-            val dummyScore = OldScore(1.0, listOf())
+            val dummyScore = Score(1.0, listOf())
             val expected = Forces(dummyScore, setOf(Miniature("M1", Color.GREEN, setOf(m1u1))),
                                   setOf(Miniature("M2", Color.GREEN, setOf(m2u1))))
             val builder = Builder(setOf(m1, m2))
