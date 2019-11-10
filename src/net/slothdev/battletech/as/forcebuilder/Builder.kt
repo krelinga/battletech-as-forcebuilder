@@ -50,7 +50,7 @@ class Builder private constructor(private val minis: List<Miniature>, private va
         private var currentUnit = unitIterator.next()
 
         val current: Miniature
-            get() = Miniature(mini.kind, mini.primaryColor, setOf(currentUnit))
+            get() = Miniature(mini.id, mini.kind, mini.primaryColor, setOf(currentUnit))
 
         // true if further calls to next() will not change the state anymore.
         val done

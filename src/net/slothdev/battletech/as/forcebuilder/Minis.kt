@@ -71,23 +71,25 @@ enum class Color {
     BROWN, GREEN, UNPAINTED_GRAY_PLASTIC, UNPAINTED_PEWTER, BLACK,
 }
 
-data class Miniature(val kind: String, val primaryColor: Color, val supportedUnits: Set<GameUnit>) {
+data class Miniature(val id: Int, val kind: String, val primaryColor: Color,
+                     val supportedUnits: Set<GameUnit>) {
     init {
         require(supportedUnits.isNotEmpty())
     }
 
     // Shortcut for miniatures composed of a single unit.
-    constructor(primaryColor: Color, unit: GameUnit) : this(unit.name, primaryColor, setOf(unit))
+    constructor(id: Int, primaryColor: Color, unit: GameUnit) : this(id, unit.name, primaryColor,
+                                                                     setOf(unit))
 }
 
 // only open to be used with GlobalMiniatureDb
 open class MiniatureDb {
     private val miniatureSet: MutableSet<Miniature> = mutableSetOf()
-    private val kindSet: MutableSet<String> = mutableSetOf()
+    private val idSet: MutableSet<Int> = mutableSetOf()
 
     fun add(miniature: Miniature) {
-        require(!kindSet.contains(miniature.kind)) { miniature.kind }
-        kindSet.add(miniature.kind)
+        require(!idSet.contains(miniature.id)) { miniature.id }
+        idSet.add(miniature.id)
         miniatureSet.add(miniature)
     }
 

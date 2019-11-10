@@ -79,7 +79,7 @@ data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
         }
         val kind = kindBuilder.toString()
 
-        db.add(Miniature(kind = kind, primaryColor = color,
+        db.add(Miniature(id, kind = kind, primaryColor = color,
                          supportedUnits = unitDb.withNamePrefix(kind)))
     }
 }
