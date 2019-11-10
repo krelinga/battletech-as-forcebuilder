@@ -1,7 +1,7 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
 enum class Role {
-    BRAWLER,
+    BRAWLER, SNIPER, MISSILE_BOAT, SKIRMISHER
 }
 
 class Damage private constructor(val value: Int, val minimal: Boolean) {
