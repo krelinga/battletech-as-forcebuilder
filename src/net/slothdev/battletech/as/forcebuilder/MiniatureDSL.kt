@@ -83,39 +83,3 @@ data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
                          supportedUnits = unitDb.withNamePrefix(kind)))
     }
 }
-
-/*
-group(unitNamePrefix = "Mad Cat") {
-    mini(name = "Gencon 2018 Prize Mad Cat", id = 10, color: green)
-}
-group(color = brown) {
-    group(unitNamePrefix = "Vulture") {
-        mini(name = "Vulture", id = 12)
-    }
-}
- */
-
-/*
-group {
-  family = "Warhammer"
-  group {
-    generation = "IIC"
-    mini {
-      variant = ""
-      color = green
-      id = 10
-    }
-  }
-}
- */
-
-/*
-db {
-    family("Warhammer") {
-        generation("IIC") {
-            color(green).id(10)
-        }
-    }
-    family("Mad Cat").color(brown).id(11)
-}
- */
