@@ -7,10 +7,10 @@ internal class MiniatureDslTest {
 
     init {
         unitDb.apply {
-            add(Unit("Mad Cat Prime", 1))
-            add(Unit("Vulture Prime", 1))
-            add(Unit("Warhammer IIC", 1))
-            add(Unit("Mad Cat A", 1))
+            add(GameUnit("Mad Cat Prime", 1))
+            add(GameUnit("Vulture Prime", 1))
+            add(GameUnit("Warhammer IIC", 1))
+            add(GameUnit("Mad Cat A", 1))
         }
     }
 

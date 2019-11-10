@@ -47,7 +47,7 @@ data class UnitDslContext(override var sz: Int? = null, override var tmm: Int? =
 }
 
 fun propertiesToUnit(family: String, generation: String, variant: String, pv: Int,
-                     properties: UnitDslProperties): Unit {
+                     properties: UnitDslProperties): GameUnit {
     val nameParts = mutableListOf<String>()
     if (family.isNotEmpty()) {
         nameParts.add(family)
@@ -58,13 +58,12 @@ fun propertiesToUnit(family: String, generation: String, variant: String, pv: In
     if (variant.isNotEmpty()) {
         nameParts.add(variant)
     }
-    return Unit(nameParts.joinToString(" "), pv, size = properties.sz!!,
-                targetMovementModifier = properties.tmm!!, movement = properties.mv!!,
-                movementJumping = properties.mvj!!, role = properties.role!!,
-                damageShort = properties.dS!!, damageMedium = properties.dM!!,
-                damageLong = properties.dL!!, overheat = properties.ov!!,
-                armor = properties.a!!,
-                structure = properties.s!!)
+    return GameUnit(nameParts.joinToString(" "), pv, size = properties.sz!!,
+                    targetMovementModifier = properties.tmm!!, movement = properties.mv!!,
+                    movementJumping = properties.mvj!!, role = properties.role!!,
+                    damageShort = properties.dS!!, damageMedium = properties.dM!!,
+                    damageLong = properties.dL!!, overheat = properties.ov!!,
+                    armor = properties.a!!, structure = properties.s!!)
 }
 
 open class UnitDslGenerationContext(protected val family: String, protected val generation: String,
@@ -98,14 +97,14 @@ open class UnitDslGenerationContext(protected val family: String, protected val 
             UnitDslDamage(if (s != null) Damage(s) else null, if (m != null) Damage(m) else null,
                           if (l != null) Damage(l) else null)
 
-    fun variant(name: String, pv: Int, builder: UnitDslContext.() -> kotlin.Unit) {
+    fun variant(name: String, pv: Int, builder: UnitDslContext.() -> Unit) {
         val context = baseContext.copy()
         context.builder()
 
         unitDb.add(propertiesToUnit(family, generation, name, pv, context))
     }
 
-    fun variant(pv: Int, builder: UnitDslContext.() -> kotlin.Unit) {
+    fun variant(pv: Int, builder: UnitDslContext.() -> Unit) {
         variant("", pv, builder)
     }
 
@@ -127,20 +126,19 @@ open class UnitDslGenerationContext(protected val family: String, protected val 
 class UnitDslFamilyContext(family: String, unitDb: UnitDb,
                            context: UnitDslContext = UnitDslContext()) :
         UnitDslGenerationContext(family, "", context, unitDb) {
-    fun generation(name: String, builder: UnitDslGenerationContext.() -> kotlin.Unit) {
+    fun generation(name: String, builder: UnitDslGenerationContext.() -> Unit) {
         val context = baseContext.copy()
         val generationContext = UnitDslGenerationContext(family, name, context, unitDb)
         generationContext.builder()
     }
 
-    fun generation(builder: UnitDslGenerationContext.() -> kotlin.Unit) {
+    fun generation(builder: UnitDslGenerationContext.() -> Unit) {
         generation("", builder)
     }
 
     fun generation(name: String, d: UnitDslDamage? = null, sz: Int? = null, tmm: Int? = null,
                    mv: Int? = null, mvj: Int? = null, role: Role? = null, ov: Int? = null,
-                   a: Int? = null, s: Int? = null,
-                   builder: UnitDslGenerationContext.() -> kotlin.Unit) {
+                   a: Int? = null, s: Int? = null, builder: UnitDslGenerationContext.() -> Unit) {
         val context = baseContext.copy()
         context.update(d, sz, tmm, mv, mvj, role, ov, a, s)
         val generationContext = UnitDslGenerationContext(family, name, context, unitDb)
@@ -149,21 +147,20 @@ class UnitDslFamilyContext(family: String, unitDb: UnitDb,
 
     fun generation(d: UnitDslDamage? = null, sz: Int? = null, tmm: Int? = null, mv: Int? = null,
                    mvj: Int? = null, role: Role? = null, ov: Int? = null, a: Int? = null,
-                   s: Int? = null, builder: UnitDslGenerationContext.() -> kotlin.Unit) {
+                   s: Int? = null, builder: UnitDslGenerationContext.() -> Unit) {
         generation("", d, sz, tmm, mv, mvj, role, ov, a, s, builder)
     }
 }
 
 class UnitDslFamily(private val unitDb: UnitDb) {
-    operator fun invoke(name: String, builder: UnitDslFamilyContext.() -> kotlin.Unit) {
+    operator fun invoke(name: String, builder: UnitDslFamilyContext.() -> Unit) {
         val context = UnitDslFamilyContext(name, unitDb)
         context.builder()
     }
 
     operator fun invoke(name: String, d: UnitDslDamage? = null, sz: Int? = null, tmm: Int? = null,
                         mv: Int? = null, mvj: Int? = null, role: Role? = null, ov: Int? = null,
-                        a: Int? = null, s: Int? = null,
-                        builder: UnitDslFamilyContext.() -> kotlin.Unit) {
+                        a: Int? = null, s: Int? = null, builder: UnitDslFamilyContext.() -> Unit) {
         val baseContext = UnitDslContext()
         baseContext.update(d, sz, tmm, mv, mvj, role, ov, a, s)
         val context = UnitDslFamilyContext(name, unitDb, baseContext)
@@ -172,8 +169,7 @@ class UnitDslFamily(private val unitDb: UnitDb) {
 
     operator fun invoke(d: UnitDslDamage? = null, sz: Int? = null, tmm: Int? = null,
                         mv: Int? = null, mvj: Int? = null, role: Role? = null, ov: Int? = null,
-                        a: Int? = null, s: Int? = null,
-                        builder: UnitDslFamilyContext.() -> kotlin.Unit) {
+                        a: Int? = null, s: Int? = null, builder: UnitDslFamilyContext.() -> Unit) {
         invoke("", d, sz, tmm, mv, mvj, role, ov, a, s, builder)
     }
 }

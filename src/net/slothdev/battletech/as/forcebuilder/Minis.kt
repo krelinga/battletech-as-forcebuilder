@@ -35,12 +35,12 @@ class Damage private constructor(val value: Int, val minimal: Boolean) {
     }
 }
 
-data class Unit(val name: String, val pointValue: Int, val size: Int = 0,
-                val targetMovementModifier: Int = 0, val movement: Int = 0,
-                val movementJumping: Int = 0, val role: Role = Role.BRAWLER,
-                val damageShort: Damage = Damage(0), val damageMedium: Damage = Damage(0),
-                val damageLong: Damage = Damage(0), val overheat: Int = 0,
-                val armor: Int = 0, val structure: Int = 0) {
+data class GameUnit(val name: String, val pointValue: Int, val size: Int = 0,
+                    val targetMovementModifier: Int = 0, val movement: Int = 0,
+                    val movementJumping: Int = 0, val role: Role = Role.BRAWLER,
+                    val damageShort: Damage = Damage(0), val damageMedium: Damage = Damage(0),
+                    val damageLong: Damage = Damage(0), val overheat: Int = 0, val armor: Int = 0,
+                    val structure: Int = 0) {
     init {
         require(pointValue >= 0) { "pv parameter must be >= 0, we saw $pointValue" }
     }
@@ -48,10 +48,10 @@ data class Unit(val name: String, val pointValue: Int, val size: Int = 0,
 
 // only open so that GlobalUnitDb can inherit from this.
 open class UnitDb {
-    private val unitSet: MutableSet<Unit> = mutableSetOf()
+    private val unitSet: MutableSet<GameUnit> = mutableSetOf()
     private val nameSet: MutableSet<String> = mutableSetOf()
 
-    fun add(unit: Unit) {
+    fun add(unit: GameUnit) {
         require(!nameSet.contains(unit.name)) {
             "The database already has a unit named ${unit.name}"
         }
@@ -59,9 +59,9 @@ open class UnitDb {
         unitSet.add(unit)
     }
 
-    fun asSet(): Set<Unit> = unitSet
+    fun asSet(): Set<GameUnit> = unitSet
 
-    fun withNamePrefix(name: String): Set<Unit> {
+    fun withNamePrefix(name: String): Set<GameUnit> {
         return asSet().filter { it.name.startsWith(name) }.toSet()
     }
 
@@ -71,13 +71,13 @@ enum class Color {
     BROWN, GREEN, UNPAINTED_GRAY_PLASTIC, UNPAINTED_PEWTER, BLACK,
 }
 
-data class Miniature(val kind: String, val primaryColor: Color, val supportedUnits: Set<Unit>) {
+data class Miniature(val kind: String, val primaryColor: Color, val supportedUnits: Set<GameUnit>) {
     init {
         require(supportedUnits.isNotEmpty())
     }
 
     // Shortcut for miniatures composed of a single unit.
-    constructor(primaryColor: Color, unit: Unit) : this(unit.name, primaryColor, setOf(unit))
+    constructor(primaryColor: Color, unit: GameUnit) : this(unit.name, primaryColor, setOf(unit))
 }
 
 // only open to be used with GlobalMiniatureDb
