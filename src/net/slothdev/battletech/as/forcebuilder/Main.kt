@@ -10,7 +10,7 @@ fun prettyPrintForces(forces: Forces) {
         println("===================")
         for (mini in side) {
             val unit = mini.supportedUnits.first()
-            println("* ${mini.kind} as ${unit.name} costing ${unit.pointValue} points")
+            println("* (#${mini.id}) ${mini.kind} as ${unit.name} costing ${unit.pointValue} " + "points")
         }
     }
 
