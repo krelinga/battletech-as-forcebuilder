@@ -5,8 +5,8 @@ class MiniatureDslException(missingField: String) : RuntimeException("Missing fi
 data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
                         private var theFamily: String? = null,
                         private var theGeneration: String? = null,
-                        private var theVariant: String? = null,
-                        private var theColor: Color? = null) {
+                        private var theVariant: String? = null, private var theColor: Color? = null,
+                        private var theNote: String? = null) {
     // Constants that are useful to make the DSL code a little more terse.
     // Colors
     val brown = Color.BROWN
@@ -20,7 +20,7 @@ data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
         return copy(theFamily = x)
     }
 
-    fun family(x: String, ext: MiniatureDsl.() -> kotlin.Unit) {
+    fun family(x: String, ext: MiniatureDsl.() -> Unit) {
         family(x).ext()
     }
 
@@ -29,7 +29,7 @@ data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
         return copy(theGeneration = x)
     }
 
-    fun generation(x: String, ext: MiniatureDsl.() -> kotlin.Unit) {
+    fun generation(x: String, ext: MiniatureDsl.() -> Unit) {
         generation(x).ext()
     }
 
@@ -38,7 +38,7 @@ data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
         return copy(theVariant = x)
     }
 
-    fun variant(x: String, ext: MiniatureDsl.() -> kotlin.Unit) {
+    fun variant(x: String, ext: MiniatureDsl.() -> Unit) {
         variant(x).ext()
     }
 
@@ -47,8 +47,17 @@ data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
         return copy(theColor = x)
     }
 
-    fun color(x: Color, ext: MiniatureDsl.() -> kotlin.Unit) {
+    fun color(x: Color, ext: MiniatureDsl.() -> Unit) {
         color(x).ext()
+    }
+
+    fun note(x: String): MiniatureDsl {
+        require(theNote == null)
+        return copy(theNote = x)
+    }
+
+    fun note(x: String, ext: MiniatureDsl.() -> Unit) {
+        note(x).ext()
     }
 
     fun miniature(id: Int) {

@@ -18,7 +18,7 @@ internal class MiniatureDslTest {
     fun `not nested`() {
         val db = MiniatureDb()
         MiniatureDsl(db, unitDb).apply {
-            family("Mad Cat").variant("Prime").color(green).miniature(1)
+            family("Mad Cat").variant("Prime").color(green).note("foo note").miniature(1)
             family("Vulture").variant("Prime").color(unpaintedGrayPlastic).miniature(2)
             family("Warhammer").generation("IIC").color(green).miniature(3)
         }
@@ -30,7 +30,7 @@ internal class MiniatureDslTest {
         MiniatureDsl(db, unitDb).apply {
             family("Mad Cat") {
                 variant("Prime").color(green) {
-                    miniature(1)
+                    note("bar note").miniature(1)
                 }
                 variant("A") {
                     color(black).miniature(3)
