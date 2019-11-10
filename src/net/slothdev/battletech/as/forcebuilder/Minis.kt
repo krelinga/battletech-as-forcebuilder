@@ -86,7 +86,7 @@ open class MiniatureDb {
     private val kindSet: MutableSet<String> = mutableSetOf()
 
     fun add(miniature: Miniature) {
-        require(!kindSet.contains(miniature.kind))
+        require(!kindSet.contains(miniature.kind)) { miniature.kind }
         kindSet.add(miniature.kind)
         miniatureSet.add(miniature)
     }
