@@ -3,10 +3,10 @@ package net.slothdev.battletech.`as`.forcebuilder
 class MiniatureDslException(missingField: String) : RuntimeException("Missing field $missingField")
 
 data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
-                        private var theFamily: String? = null,
-                        private var theGeneration: String? = null,
-                        private var theVariant: String? = null, private var theColor: Color? = null,
-                        private var theNote: String? = null) {
+                        private val theFamily: String? = null,
+                        private val theGeneration: String? = null,
+                        private val theVariant: String? = null, private var theColor: Color? = null,
+                        private val theNote: String? = null) {
     // Constants that are useful to make the DSL code a little more terse.
     // Colors
     val brown = Color.BROWN
