@@ -14,6 +14,8 @@ fun prettyPrintForces(forces: Forces) {
         }
     }
 
+    println("finalScore: ${forces.score.finalScore}")
+    println()
     prettyPrintOneSide(forces.side1, 1)
     println()
     prettyPrintOneSide(forces.side2, 2)
