@@ -4,15 +4,15 @@ class UnitDslException(missingField: String) : RuntimeException("missing field $
 
 data class UnitDslDamageTuple(val short: Damage, val medium: Damage, val long: Damage)
 
-data class UnitDsl(private val unitDb: UnitDb, private var theFamily: String? = null,
-                   private var theGeneration: String? = null,
-                   private var theVariant: String? = null, private var theSize: Int? = null,
-                   private var theTargetMovementModifier: Int? = null,
-                   private var theMovement: Int? = null,
-                   private var theMovementJumping: Int? = null, private var theRole: Role? = null,
-                   private var theDamage: UnitDslDamageTuple? = null,
-                   private var theOverheat: Int? = null, private var theArmor: Int? = null,
-                   private var theStructure: Int? = null) {
+data class UnitDsl(private val unitDb: UnitDb, private val theFamily: String? = null,
+                   private val theGeneration: String? = null,
+                   private val theVariant: String? = null, private val theSize: Int? = null,
+                   private val theTargetMovementModifier: Int? = null,
+                   private val theMovement: Int? = null,
+                   private val theMovementJumping: Int? = null, private val theRole: Role? = null,
+                   private val theDamage: UnitDslDamageTuple? = null,
+                   private val theOverheat: Int? = null, private val theArmor: Int? = null,
+                   private val theStructure: Int? = null) {
     // Constants to make the DSL code a little more terse.
     // Damage
     val min = Damage.minimal()
