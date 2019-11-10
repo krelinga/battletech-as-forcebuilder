@@ -5,7 +5,7 @@ import kotlin.test.*
 
 internal class GlobalMiniatureDbTest {
     @Test
-    fun `has GenCon 2018 mini`() {
-        assertTrue(GlobalMiniatureDb.asSet().any { it.kind.contains("GenCon 2018") })
+    fun `has Mad Cat mini`() {
+        assertTrue(GlobalMiniatureDb.asSet().any { it.kind.contains("Mad Cat") })
     }
 }
