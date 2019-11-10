@@ -192,3 +192,20 @@ family("foo", role = brawler, sz = 2, tmm = 3, mv = 10) {
   }
 }
  */
+
+/*
+family("Mad Cat") {
+    generation("Timber Wolf").sz(3).tmm(2).mv(10).a(8).s(4) {
+        variant("Prime").role(brawler).damage(5, 5, 4).ov(1).unit(54)
+        variant("A").role(skirmisher).damage(7, 7, 3).ov(1).unit(59)
+        role(sniper).damage(4, 4, 4) {
+            variant("B").unit(48)
+            variant("C").ov(1).unit(50)
+        }
+        variant("D").role(skirmisher).damage(5, 5, 3).ov(1).unit(51)
+        variant("E").role(sniper).damage(7, 5, 4).unit(53)
+        variant("F").role(missileBoat).damage(5, 5, 4).ov(2).unit(54)
+        variant("H").role(missileBoat).damage(6, 6, 4).ov(1).unit(59)
+    }
+}
+ */
