@@ -1,8 +1,6 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
 object GlobalUnitDb : UnitDb() {
-    private val family = UnitDslFamily(this)
-
     init {
         UnitDsl(this).apply {
             family("Mad Cat") {
