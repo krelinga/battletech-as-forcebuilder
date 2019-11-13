@@ -60,8 +60,8 @@ data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
         note(x).ext()
     }
 
-    fun miniature(id: Int) {
-        require(id > 0)  // TODO(krelinga0: this is just there to avoid a warning.
+    fun miniature(id: String) {
+        require(id.isNotBlank())
         val family = theFamily ?: throw MiniatureDslException("family")
         val generation = theGeneration ?: ""
         val variant = theVariant ?: ""
