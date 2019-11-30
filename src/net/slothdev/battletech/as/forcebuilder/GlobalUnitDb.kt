@@ -137,6 +137,10 @@ object GlobalUnitDb : UnitDb() {
             family("Enforcer").size(2).tmm(1).mv(8).mvj(8).armor(5).structure(4) {
                 variant("ENF-4R").role(skirmisher).damage(3, 2, 0).unit(25)
             }
+
+            family("Trebuchet").size(2).tmm(2).mv(10).armor(4).structure(4) {
+                variant("TBT-5N").role(missileBoat).damage(2, 2, 2).overheat(1).unit(29)
+            }
         }
     }
 }
