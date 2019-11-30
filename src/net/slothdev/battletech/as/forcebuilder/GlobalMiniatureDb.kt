@@ -80,6 +80,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Catapult") {
                 color(packers).miniature("CPT-1")
             }
+
+            family("Hunchback") {
+                color(packers).miniature("HBK-1")
+            }
         }
     }
 }

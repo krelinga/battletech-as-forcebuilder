@@ -145,6 +145,10 @@ object GlobalUnitDb : UnitDb() {
             family("Catapult").size(3).tmm(1).mv(8).mvj(8).armor(6).structure(5) {
                 variant("CPLT-A1").role(missileBoat).damage(1, 2, 2).unit(31)
             }
+
+            family("Hunchback").size(2).tmm(1).mv(8).armor(5).structure(4) {
+                variant("HBK-4G").role(juggernaut).damage(4, 3, 0).unit(28)
+            }
         }
     }
 }
