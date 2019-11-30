@@ -67,6 +67,12 @@ object GlobalUnitDb : UnitDb() {
                     variant("I").role(sniper).damage(3, 3, 3).overheat(2).unit(42)
                 }
             }
+
+            family("Thor") {
+                generation("Summoner").size(3).tmm(2).mv(10).mvj(10).armor(6).structure(4) {
+                    variant("Prime").role(sniper).damage(4, 4, 4).unit(43)
+                }
+            }
         }
     }
 }
