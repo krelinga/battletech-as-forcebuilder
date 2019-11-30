@@ -52,6 +52,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Sunder") {
                 color(blueAndWhite).miniature("SND-1")
             }
+
+            family("Avatar") {
+                color(blueAndWhite).miniature("AVT-1")
+            }
         }
     }
 }

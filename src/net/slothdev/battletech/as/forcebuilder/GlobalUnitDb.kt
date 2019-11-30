@@ -117,6 +117,10 @@ object GlobalUnitDb : UnitDb() {
             family("Sunder").size(4).tmm(1).mv(8).armor(9).structure(4) {
                 variant("SD1-O").role(brawler).damage(6, 6, 0).overheat(1).unit(46)
             }
+
+            family("Avatar").size(3).tmm(1).mv(8).armor(6).structure(3) {
+                variant("AV1-0").role(brawler).damage(4, 5, 3).unit(38)
+            }
         }
     }
 }
