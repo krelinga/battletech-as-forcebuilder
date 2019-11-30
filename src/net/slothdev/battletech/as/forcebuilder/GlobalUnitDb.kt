@@ -153,6 +153,10 @@ object GlobalUnitDb : UnitDb() {
             family("Awesome").size(4).tmm(1).mv(6).armor(8).structure(6) {
                 variant("AWS-8Q").role(sniper).damage(3, 3, 3).unit(39)
             }
+
+            family("Vindicator").size(2).tmm(1).mv(8).mvj(8).armor(5).structure(4) {
+                variant("VND-1R").role(brawler).damage(2, 2, 2).unit(27)
+            }
         }
     }
 }
