@@ -22,6 +22,7 @@ data class UnitDsl(private val unitDb: UnitDb, private val theFamily: String? = 
     val skirmisher = Role.SKIRMISHER
     val missileBoat = Role.MISSILE_BOAT
     val striker = Role.STRIKER
+    val juggernaut = Role.JUGGERNAUT
 
     fun family(x: String): UnitDsl {
         require(theFamily == null)

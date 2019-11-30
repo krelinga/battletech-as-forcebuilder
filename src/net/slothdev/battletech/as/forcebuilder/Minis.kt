@@ -1,7 +1,7 @@
 package net.slothdev.battletech.`as`.forcebuilder
 
 enum class Role {
-    BRAWLER, SNIPER, MISSILE_BOAT, SKIRMISHER, STRIKER
+    BRAWLER, SNIPER, MISSILE_BOAT, SKIRMISHER, STRIKER, JUGGERNAUT,
 }
 
 class Damage private constructor(val value: Int, val minimal: Boolean) {
@@ -68,7 +68,7 @@ open class UnitDb {
 }
 
 enum class Color {
-    BROWN, GREEN, UNPAINTED_GRAY_PLASTIC, UNPAINTED_PEWTER, BLACK, BLUE_AND_WHITE,
+    BROWN, GREEN, UNPAINTED_GRAY_PLASTIC, UNPAINTED_PEWTER, BLACK, BLUE_AND_WHITE, SHINY_BLUE
 }
 
 data class Miniature(val id: String, val kind: String, val primaryColor: Color,

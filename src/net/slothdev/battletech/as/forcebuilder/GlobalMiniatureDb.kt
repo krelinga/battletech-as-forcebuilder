@@ -60,6 +60,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Blackjack") {
                 color(blueAndWhite).miniature("BJK-1")
             }
+
+            family("Atlas") {
+                color(shinyBlue).miniature("ATS-1")
+            }
         }
     }
 }

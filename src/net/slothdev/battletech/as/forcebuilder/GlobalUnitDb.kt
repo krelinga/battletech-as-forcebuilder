@@ -125,6 +125,10 @@ object GlobalUnitDb : UnitDb() {
             family("Blackjack").size(2).tmm(1).mv(8).mvj(8).armor(5).structure(2) {
                 variant("BJ2-O").role(brawler).damage(5, 4, 2).unit(31)
             }
+
+            family("Atlas").size(4).tmm(1).mv(6).armor(10).structure(8) {
+                variant("AS7-D").role(juggernaut).damage(5, 5, 2).unit(52)
+            }
         }
     }
 }
