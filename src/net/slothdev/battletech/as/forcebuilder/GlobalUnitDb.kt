@@ -109,6 +109,10 @@ object GlobalUnitDb : UnitDb() {
             family("Corvis").size(2).tmm(1).mv(8).mvj(8).armor(4).structure(3) {
                 variant("Standard").role(brawler).damage(4, 4, 2).unit(29)
             }
+
+            family("Rakshasa").size(3).tmm(2).mv(10).armor(7).structure(3) {
+                variant("MDG-1A").role(skirmisher).damage(4, 4, 4).overheat(1).unit(46)
+            }
         }
     }
 }

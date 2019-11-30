@@ -68,7 +68,7 @@ open class UnitDb {
 }
 
 enum class Color {
-    BROWN, GREEN, UNPAINTED_GRAY_PLASTIC, UNPAINTED_PEWTER, BLACK,
+    BROWN, GREEN, UNPAINTED_GRAY_PLASTIC, UNPAINTED_PEWTER, BLACK, BLUE_AND_WHITE,
 }
 
 data class Miniature(val id: String, val kind: String, val primaryColor: Color,
