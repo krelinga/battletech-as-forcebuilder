@@ -16,6 +16,7 @@ data class MiniatureDsl(private val db: MiniatureDb, private val unitDb: UnitDb,
     val black = Color.BLACK
     val blueAndWhite = Color.BLUE_AND_WHITE
     val shinyBlue = Color.SHINY_BLUE
+    val packers = Color.PACKERS
 
     fun family(x: String): MiniatureDsl {
         require(theFamily == null)

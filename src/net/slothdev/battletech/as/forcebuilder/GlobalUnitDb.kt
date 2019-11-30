@@ -141,6 +141,10 @@ object GlobalUnitDb : UnitDb() {
             family("Trebuchet").size(2).tmm(2).mv(10).armor(4).structure(4) {
                 variant("TBT-5N").role(missileBoat).damage(2, 2, 2).overheat(1).unit(29)
             }
+
+            family("Catapult").size(3).tmm(1).mv(8).mvj(8).armor(6).structure(5) {
+                variant("CPLT-A1").role(missileBoat).damage(1, 2, 2).unit(31)
+            }
         }
     }
 }

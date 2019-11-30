@@ -76,6 +76,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Trebuchet") {
                 color(shinyBlue).miniature("TBT-1")
             }
+
+            family("Catapult") {
+                color(packers).miniature("CPT-1")
+            }
         }
     }
 }
