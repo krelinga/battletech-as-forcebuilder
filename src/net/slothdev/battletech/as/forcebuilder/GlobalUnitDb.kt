@@ -26,7 +26,7 @@ object GlobalUnitDb : UnitDb() {
 
             family("Vulture") {
                 generation("Mad Dog").size(3).tmm(2).mv(10).armor(5).structure(3) {
-                    variant("prime").role(missileBoat).damage(4, 4, 4).overheat(2).unit(42)
+                    variant("Prime").role(missileBoat).damage(4, 4, 4).overheat(2).unit(42)
                     variant("A").role(skirmisher).damage(5, 5, 2).overheat(2).unit(42)
                     variant("B").role(skirmisher).damage(4, 4, 2).overheat(4).unit(41)
                     variant("C").role(sniper).damage(3, 3, 3).unit(33)
@@ -76,7 +76,7 @@ object GlobalUnitDb : UnitDb() {
 
             family("Loki") {
                 generation("Hellbringer").size(3).tmm(2).mv(10).armor(4).structure(4) {
-                    variant("Prime").role(striker).damage(4, 4, 2).unit(44)
+                    variant("Prime").role(striker).damage(4, 4, 2).overheat(3).unit(44)
                 }
             }
 
