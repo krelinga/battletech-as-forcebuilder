@@ -48,6 +48,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Rakshasa") {
                 color(blueAndWhite).miniature("RKS-1")
             }
+
+            family("Sunder") {
+                color(blueAndWhite).miniature("SND-1")
+            }
         }
     }
 }

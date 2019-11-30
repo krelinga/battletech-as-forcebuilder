@@ -113,6 +113,10 @@ object GlobalUnitDb : UnitDb() {
             family("Rakshasa").size(3).tmm(2).mv(10).armor(7).structure(3) {
                 variant("MDG-1A").role(skirmisher).damage(4, 4, 4).overheat(1).unit(46)
             }
+
+            family("Sunder").size(4).tmm(1).mv(8).armor(9).structure(4) {
+                variant("SD1-O").role(brawler).damage(6, 6, 0).overheat(1).unit(46)
+            }
         }
     }
 }
