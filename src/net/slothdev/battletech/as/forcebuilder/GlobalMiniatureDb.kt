@@ -68,6 +68,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Grasshopper") {
                 color(shinyBlue).miniature("GHR-1")
             }
+
+            family("Enforcer") {
+                color(shinyBlue).miniature("ENF-1")
+            }
         }
     }
 }

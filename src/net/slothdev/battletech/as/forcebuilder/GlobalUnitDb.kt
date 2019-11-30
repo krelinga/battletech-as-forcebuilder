@@ -133,6 +133,10 @@ object GlobalUnitDb : UnitDb() {
             family("Grasshopper").size(3).tmm(1).mv(8).mvj(8).armor(7).structure(6) {
                 variant("GHR-5H").role(skirmisher).damage(3, 4, min).unit(37)
             }
+
+            family("Enforcer").size(2).tmm(1).mv(8).mvj(8).armor(5).structure(4) {
+                variant("ENF-4R").role(skirmisher).damage(3, 2, 0).unit(25)
+            }
         }
     }
 }
