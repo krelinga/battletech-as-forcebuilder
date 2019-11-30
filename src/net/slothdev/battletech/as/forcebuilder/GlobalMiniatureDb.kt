@@ -18,6 +18,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Shadow Cat") {
                 color(unpaintedPewter).miniature("SDC-1")
             }
+
+            family("Uller").generation("Kit Fox") {
+                color(unpaintedPewter).miniature("ULR-1")
+            }
         }
     }
 }

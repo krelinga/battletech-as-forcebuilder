@@ -85,6 +85,12 @@ object GlobalUnitDb : UnitDb() {
                     variant("Prime").role(striker).damage(3, 3, 2).unit(41)
                 }
             }
+
+            family("Uller") {
+                generation("Kit Fox").size(1).tmm(2).mv(12).armor(3).structure(2) {
+                    variant("Prime").role(sniper).damage(3, 3, 2).unit(26)
+                }
+            }
         }
     }
 }
