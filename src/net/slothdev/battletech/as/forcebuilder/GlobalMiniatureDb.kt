@@ -36,6 +36,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Black Hawk").generation("Nova") {
                 color(brown).miniature("BHK-1")
             }
+
+            family("Black Lanner") {
+                color(brown).miniature("BLR-1")
+            }
         }
     }
 }
