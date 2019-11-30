@@ -96,9 +96,13 @@ data class UnitDsl(private val unitDb: UnitDb, private val theFamily: String? = 
         role(x).ext()
     }
 
-    fun damage(s: Damage, m: Int, l: Int): UnitDsl {
+    fun damage(s: Damage, m: Int, l: Damage): UnitDsl {
         require(theDamage == null)
-        return copy(theDamage = UnitDslDamageTuple(short = s, medium = Damage(m), long = Damage(l)))
+        return copy(theDamage = UnitDslDamageTuple(short = s, medium = Damage(m), long = l))
+    }
+
+    fun damage(s: Damage, m: Int, l: Int): UnitDsl {
+        return damage(s, m, Damage(l))
     }
 
     fun damage(s: Int, m: Int, l: Int): UnitDsl {
@@ -111,6 +115,10 @@ data class UnitDsl(private val unitDb: UnitDb, private val theFamily: String? = 
 
     fun damage(s: Int, m: Int, l: Int, ext: UnitDsl.() -> Unit) {
         damage(Damage(s), m, l).ext()
+    }
+
+    fun damage(s: Int, m: Int, l: Damage): UnitDsl {
+        return damage(Damage(s), m, l)
     }
 
     fun overheat(x: Int): UnitDsl {

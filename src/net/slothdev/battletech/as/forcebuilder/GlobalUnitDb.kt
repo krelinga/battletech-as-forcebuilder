@@ -129,6 +129,10 @@ object GlobalUnitDb : UnitDb() {
             family("Atlas").size(4).tmm(1).mv(6).armor(10).structure(8) {
                 variant("AS7-D").role(juggernaut).damage(5, 5, 2).unit(52)
             }
+
+            family("Grasshopper").size(3).tmm(1).mv(8).mvj(8).armor(7).structure(6) {
+                variant("GHR-5H").role(skirmisher).damage(3, 4, min).unit(37)
+            }
         }
     }
 }
