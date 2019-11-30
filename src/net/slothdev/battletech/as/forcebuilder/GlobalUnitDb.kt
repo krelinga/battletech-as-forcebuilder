@@ -73,6 +73,12 @@ object GlobalUnitDb : UnitDb() {
                     variant("Prime").role(sniper).damage(4, 4, 4).unit(43)
                 }
             }
+
+            family("Loki") {
+                generation("Hellbringer").size(3).tmm(2).mv(10).armor(4).structure(4) {
+                    variant("Prime").role(striker).damage(4, 4, 2).unit(44)
+                }
+            }
         }
     }
 }
