@@ -79,6 +79,12 @@ object GlobalUnitDb : UnitDb() {
                     variant("Prime").role(striker).damage(4, 4, 2).unit(44)
                 }
             }
+
+            family("Shadow Cat") {
+                generation("").size(2).tmm(3).mv(16).mvj(12).armor(4).structure(2) {
+                    variant("Prime").role(striker).damage(3, 3, 2).unit(41)
+                }
+            }
         }
     }
 }

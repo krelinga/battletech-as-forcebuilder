@@ -14,6 +14,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Vulture").generation("Mad Dog") {
                 color(unpaintedPewter).miniature("VLT-1")
             }
+
+            family("Shadow Cat") {
+                color(unpaintedPewter).miniature("SDC-1")
+            }
         }
     }
 }
