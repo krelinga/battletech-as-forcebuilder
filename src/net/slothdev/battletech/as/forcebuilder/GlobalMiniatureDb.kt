@@ -26,6 +26,12 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Linebacker") {
                 color(unpaintedPewter).miniature("LBR-1")
             }
+
+            family("Marauder") {
+                generation("IIC") {
+                    color(brown).miniature("MAR-1")
+                }
+            }
         }
     }
 }

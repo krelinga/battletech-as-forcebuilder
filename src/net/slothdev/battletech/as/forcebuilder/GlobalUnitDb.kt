@@ -95,6 +95,12 @@ object GlobalUnitDb : UnitDb() {
             family("Linebacker").size(3).tmm(2).mv(12).armor(6).structure(4) {
                 variant("Prime").role(skirmisher).damage(4, 4, 4).overheat(1).unit(44)
             }
+
+            family("Marauder") {
+                generation("IIC").size(4).tmm(1).mv(8).armor(7).structure(7) {
+                    variant("Standard").role(brawler).damage(6, 6, 5).overheat(3).unit(51)
+                }
+            }
         }
     }
 }
