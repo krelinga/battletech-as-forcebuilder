@@ -91,6 +91,10 @@ object GlobalUnitDb : UnitDb() {
                     variant("Prime").role(sniper).damage(3, 3, 2).unit(26)
                 }
             }
+
+            family("Linebacker").size(3).tmm(2).mv(12).armor(6).structure(4) {
+                variant("Prime").role(skirmisher).damage(4, 4, 4).overheat(1).unit(44)
+            }
         }
     }
 }

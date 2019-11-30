@@ -22,6 +22,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Uller").generation("Kit Fox") {
                 color(unpaintedPewter).miniature("ULR-1")
             }
+
+            family("Linebacker") {
+                color(unpaintedPewter).miniature("LBR-1")
+            }
         }
     }
 }
