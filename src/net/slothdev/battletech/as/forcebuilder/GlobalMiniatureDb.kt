@@ -10,6 +10,10 @@ object GlobalMiniatureDb : MiniatureDb() {
             family("Loki").generation("Hellbringer") {
                 color(unpaintedPewter).miniature("LOK-1")
             }
+
+            family("Vulture").generation("Mad Dog") {
+                color(unpaintedPewter).miniature("VLT-1")
+            }
         }
     }
 }
