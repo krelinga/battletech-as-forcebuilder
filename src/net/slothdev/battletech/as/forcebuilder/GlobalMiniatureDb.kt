@@ -24,7 +24,7 @@ object GlobalMiniatureDb : MiniatureDb() {
             }
 
             family("Linebacker") {
-                color(unpaintedPewter).miniature("LBR-1")
+                color(brown).miniature("LBR-1")
             }
 
             family("Marauder") {
