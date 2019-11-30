@@ -75,6 +75,13 @@ data class Miniature(val id: String, val kind: String, val primaryColor: Color,
                      val supportedUnits: Set<GameUnit>) {
     init {
         require(supportedUnits.isNotEmpty())
+        require(id.isNotEmpty())
+        require(id.toUpperCase() == id)
+        require(!id.contains("0"))
+        require(!id.contains("_"))
+        require(!id.startsWith("-"))
+        require(!id.endsWith("-"))
+        require(!Regex("\\s").containsMatchIn(id))
     }
 
     // Shortcut for miniatures composed of a single unit.
