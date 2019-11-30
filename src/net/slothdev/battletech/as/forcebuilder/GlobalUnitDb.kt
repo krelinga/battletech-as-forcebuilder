@@ -105,6 +105,10 @@ object GlobalUnitDb : UnitDb() {
             family("Black Lanner").size(2).tmm(3).mv(18).armor(5).structure(3) {
                 variant("Prime").role(skirmisher).damage(3, 3, 2).overheat(1).unit(47)
             }
+
+            family("Corvis").size(2).tmm(1).mv(8).mvj(8).armor(4).structure(3) {
+                variant("Standard").role(brawler).damage(4, 4, 2).unit(29)
+            }
         }
     }
 }
